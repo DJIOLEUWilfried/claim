@@ -1,0 +1,385 @@
+package com.kozao.services;
+
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+
+import com.kozao.models.*;
+import com.kozao.utils.ClaimConstanteUtil;
+
+
+public class UserServiceImpl implements UserService {
+
+	public static Logger logger = Logger.getLogger(UserServiceImpl.class.getName());
+
+	public UserServiceImpl() {
+	}
+
+	@Override
+	public int addUser(User user) {
+        int r = 0 ;
+		
+        try {
+
+			Connection con = ConnexionDB.getConnection();
+
+			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_CREATE_USER);
+
+			pre.setString(1, user.getUserName());
+			pre.setString(2, user.getUserFirstName());
+			pre.setString(3, user.getUserEmail());
+			pre.setString(4, user.getUserRole());
+			pre.setBoolean(5, true);
+			pre.setString(6, user.getPassWord());
+
+			r = pre.executeUpdate();
+
+		} catch (SQLException e) {
+			
+			// System.out.println("\n Erreur == " + e.getMessage());
+			
+			logger.warning(String.format("\n Error : ", e));
+
+		}
+
+		return r;
+	}
+
+	
+	@Override
+	public int updateUserProfil(User user) {
+		int r = 0;
+		try {
+
+			Connection con = ConnexionDB.getConnection();
+			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_UPDATE_USER_PROFIL);
+
+			pre.setString(1, user.getUserName());
+			pre.setString(2, user.getUserFirstName());
+			pre.setString(3, user.getUserEmail());
+			pre.setInt(4, user.getIdUser());
+
+			r = pre.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("\n Erreur == " + e.getMessage());
+
+			logger.warning(String.format("\n Error : ", e.getMessage()));
+		}
+		
+		return r;
+	}
+	
+	@Override
+	public int updatePassWord(String oldPassword, String newPassword) {
+        int r = 0;
+        
+		if (!findPassWord(oldPassword)) {  return 1;  }
+
+		try {
+			
+			Connection con = ConnexionDB.getConnection();
+			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_UPDATE_PASSWORD);
+
+			pre.setString(1, oldPassword);
+			pre.setString(2, newPassword);
+
+			r = pre.executeUpdate();
+
+		} catch (Exception e) {
+			
+			logger.warning(String.format("\n Error : ", e.getMessage()));
+		}
+		
+        return r;
+	}
+	
+	@Override
+	public boolean findPassWord(String passWord) {
+
+		try {
+			Connection con = ConnexionDB.getConnection();
+			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_FIND_PASSWORD);
+
+			pre.setString(1, passWord);
+
+			int rst = pre.executeUpdate();
+			
+			if (rst > 0) {
+				return true;
+			}
+
+		}catch (Exception e) {
+
+			logger.warning(String.format(" Error : ", e.getMessage()));
+		}
+		
+        return false;
+	}
+	
+	
+	@Override
+	public int disableUser(int id) {
+		try {
+
+			Connection con = ConnexionDB.getConnection();
+
+			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_STAUT_USER);
+
+			pre.setBoolean(1, false);
+			pre.setInt(2, id);
+
+			id = pre.executeUpdate();
+
+			// msgUser = ClaimConstanteUtil.MSG_DISABLE_USER_STATUS;
+
+			return id;
+
+		} catch (Exception e) { 
+
+			logger.warning(String.format(ClaimConstanteUtil.MSG_FAILED_DISABLE_USER_STATUS, " Error : ", e.getMessage()));
+
+			return 0;
+		}
+
+	}
+
+	
+	@Override
+	public int enableUser(int id) {
+		try {
+
+			Connection con = ConnexionDB.getConnection();
+
+			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_STAUT_USER);
+
+			pre.setBoolean(1, true);
+			pre.setInt(2, id);
+
+			id = pre.executeUpdate();
+
+			// msgUser = ClaimConstanteUtil.MSG_FAILED_ENABLE_USER_STATUS;
+
+			return id;
+
+		} catch (SQLException e) {
+
+			logger.warning(String.format(ClaimConstanteUtil.MSG_ENABLE_USER_STATUS, " Error : ", e.getMessage()));
+		}
+		
+		return 0;
+	}
+
+	
+	@Override
+	public int deleteUser(int id) {
+		try {
+
+			Connection con = ConnexionDB.getConnection();
+
+			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_DELETE_USER);
+			pre.setInt(1, id);
+
+			id = pre.executeUpdate();  
+
+			// msgUser = ClaimConstanteUtil.QUERY_USER_DELETE;
+
+			return id;
+
+		} catch (Exception e) {
+			
+			logger.warning(String.format(ClaimConstanteUtil.QUERY_FAILED_USER_DELETE, " Error : ", e.getMessage()));
+		}
+		
+		return 0;
+	}
+
+	@Override
+	public User findUserById(int id) {
+
+		try {
+
+			Connection con = ConnexionDB.getConnection();
+
+			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_FIND_USER_BY_ID);
+
+			pre.setInt(1, id);
+
+			ResultSet rs = pre.executeQuery();
+			if (rs.next()) {
+				User user = new User();
+
+				user.setIdUser(rs.getInt("id_user"));
+				user.setUserName(rs.getString("user_name"));
+				user.setUserFirstName(rs.getString("user_first_name"));
+				user.setUserEmail(rs.getString("email"));
+				user.setUserRole(rs.getString("user_role"));
+				user.setUserStatus(rs.getBoolean("user_status"));
+
+				return user;
+			}
+
+			// msgUser = ClaimConstanteUtil.MSG_INVALID_SEARCH;
+			
+		} catch (Exception e) {
+
+			logger.warning(String.format(ClaimConstanteUtil.MSG_FAILLED_FIND_USER, " Error : ", e.getMessage()));
+
+		}
+
+		return null;
+
+	}
+
+	@Override
+	public User findUserByName(String name) {
+
+		try {
+
+			Connection con = ConnexionDB.getConnection();
+
+			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_FIND_USER_BY_NAME);
+
+			pre.setString(1, name);
+
+			ResultSet rs = pre.executeQuery();
+			if (rs.next()) {
+				User user = new User();
+
+				user.setIdUser(rs.getInt("id_user"));
+				user.setUserName(rs.getString("user_name"));
+				user.setUserFirstName(rs.getString("user_first_name"));
+				user.setUserEmail(rs.getString("email"));
+				user.setUserRole(rs.getString("user_role"));
+				user.setUserStatus(rs.getBoolean("user_status"));
+
+				return user;
+			}
+
+			// msgUser = ClaimConstanteUtil.MSG_INVALID_SEARCH;
+			
+		} catch (Exception e) {
+
+			logger.warning(String.format(ClaimConstanteUtil.MSG_FAILLED_FIND_USER, " Error : ", e.getMessage()));
+		}
+		
+		return null;
+	}
+
+	@Override
+	public User findUserByFirstName(String firstName) {
+
+		try {
+
+			Connection con = ConnexionDB.getConnection();
+
+			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_FIND_USER_BY_FIRST_NAME);
+
+			pre.setString(1, firstName);
+
+			ResultSet rs = pre.executeQuery();
+			if (rs.next()) {
+				User user = new User();
+
+				user.setIdUser(rs.getInt("id_user"));
+				user.setUserName(rs.getString("user_name"));
+				user.setUserFirstName(rs.getString("user_first_name"));
+				user.setUserEmail(rs.getString("email"));
+				user.setUserRole(rs.getString("user_role"));
+				user.setUserStatus(rs.getBoolean("user_status"));
+
+				return user;
+			}
+			
+			// msgUser = ClaimConstanteUtil.MSG_INVALID_SEARCH;
+
+
+		} catch (Exception e) {
+
+			logger.warning(String.format(ClaimConstanteUtil.MSG_FAILLED_FIND_USER, " Error : ", e.getMessage()));
+		}
+
+		return null;
+
+	}
+
+	@Override
+	public List<User> findAllUser() {
+
+		List<User> allUser = new ArrayList<>();
+
+		try  {
+			Connection con = ConnexionDB.getConnection();
+
+			Statement stm = con.createStatement();
+
+
+			ResultSet rs = stm.executeQuery(ClaimConstanteUtil.QUERY_FIND_ALL_USER);
+			while (rs.next()) {
+				User user = new User();
+
+				user.setIdUser(rs.getInt("id_user"));
+				user.setUserName(rs.getString("user_name"));
+				user.setUserFirstName(rs.getString("user_first_name"));
+				user.setUserEmail(rs.getString("email"));
+				user.setUserRole(rs.getString("user_role"));
+				user.setUserStatus(rs.getBoolean("user_status"));
+
+				allUser.add(user);
+			}
+			
+			return allUser;
+			
+		} catch (SQLException e) {
+			logger.warning(String.format(" Error : ", e.getMessage()));
+		}
+		
+		return allUser;
+	}
+	
+	@Override
+	public User login(String user_email, String password) {
+		
+		try {
+
+			Connection con = ConnexionDB.getConnection();
+
+			// QUERY_LOGIN_USER = "SELECT user_name users FROM user_email=?, password=?" ;
+			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_LOGIN_USER);
+
+			pre.setString(1, user_email);
+			pre.setString(2, password);
+
+			ResultSet rs = pre.executeQuery();
+			if (rs.next()) {
+				User user = new User();
+				
+				user.setUserName(rs.getString("user_name"));
+
+				return user;
+			}
+
+		} catch (Exception e) {
+
+			logger.warning(String.format(ClaimConstanteUtil.MSG_FAILLED_FIND_USER, " Error : ", e.getMessage()));
+			
+			System.out.println("\n  Erreur : " + e.getMessage());
+		}
+		
+		return null;
+	}
+
+	@Override
+	public int logout(String user_email, String password) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+
+
+
+}
