@@ -5,30 +5,38 @@ import javax.mail.internet.InternetAddress;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class ClaimControlUserUtil {
+	
+	public static boolean checkAllFields(String... values) {
 
-	public static boolean controlAddUser(String name, String firstName, String email, String role, String password) {
+		for (String value : values) {
 
-		if (name.isEmpty() || firstName.isEmpty() || email.isEmpty() || role.isEmpty() || password.isEmpty()
-				|| name == null || firstName == null || email == null || role == null || password == null) {
-
-			return true;
+			if (value.isEmpty() || value == null) {
+				return true;
+			}
 		}
-
 		return false;
 	}
+//
+//	public static boolean controlAddUser(String name, String firstName, String email, String role, String password) {
+//
+//		if (name.isEmpty() || firstName.isEmpty() || email.isEmpty() || role.isEmpty() || password.isEmpty()
+//				|| name == null || firstName == null || email == null || role == null || password == null) {
+//
+//			return true;
+//		}
+//
+//		return false;
+//	}
 
 	public static boolean emailValid(String email) {
 
 		try {
 			InternetAddress emailAddr = new InternetAddress(email);
 			emailAddr.validate();
-			// System.out.println("Email valide !");
 
 			return true;
 
 		} catch (Exception e) {
-			// System.out.println("Email invalide !");
-
 			return false;
 		}
 	}
@@ -49,22 +57,13 @@ public class ClaimControlUserUtil {
 		return false;
 	}
 
-	public static boolean controlUpdatePassWord(String oldPassword, String newPassword) {
-		if (oldPassword.isEmpty() || newPassword.isEmpty() || oldPassword == null || newPassword == null) {
-			return true;
-		}
-		return false;
-	}
+//	public static boolean controlUpdatePassWord(String oldPassword, String newPassword) {
+//		if (oldPassword.isEmpty() || newPassword.isEmpty() || oldPassword == null || newPassword == null) {
+//			return true;
+//		}
+//		return false;
+//	}
 
-	public static boolean checkAllFields(String... values) {
-
-		for (String value : values) {
-
-			if (value.isEmpty() || value == null) {
-				return true;
-			}
-		}
-		return false;
-	}
+	
 
 }

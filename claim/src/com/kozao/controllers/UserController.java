@@ -1,10 +1,13 @@
 package com.kozao.controllers;
 
+import java.util.List;
+
 import com.kozao.models.User;
 import com.kozao.services.UserService;
 import com.kozao.services.UserServiceImpl;
 import com.kozao.utils.ClaimConstanteUtil;
 import com.kozao.utils.ClaimControlUserUtil;
+import com.kozao.utils.ClaimSendPasswordUtil;
 
 public class UserController {
 
@@ -12,29 +15,41 @@ public class UserController {
 	User user = new User();
 	public static String msgUserController;
 
-	public void addUserController(String name, String firstName, String email, String role, String password) {
+	public void addUserController(String name, String firstName, String email, String role) {
 
-		if (ClaimControlUserUtil.controlAddUser(name, firstName, email, role, password)) {
+		if (ClaimControlUserUtil.checkAllFields(name, firstName, email, role)) {
 
 			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;
 			return;
 		}
+		
+//		if ("user" != role.toLowerCase() && "admin" != role.toLowerCase()) { 
+//			// msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;
+//			return;
+//		}
+		
 		if (!ClaimControlUserUtil.emailValid(email)) {
-			msgUserController = ClaimConstanteUtil.MSG_INVALID_EMAIL;
+			msgUserController = ClaimConstanteUtil.MSG_INVALID_ROLE;
 			return;
 		}
-
+		
+		String password = ClaimSendPasswordUtil.SendPassword(email, name);
+		if (password.isEmpty() || password == null) {
+			msgUserController = ClaimConstanteUtil.MSG_FAILED_SEND_PASSWORD;
+			return;
+		}
+		
 		user.setUserName(name);
 		user.setUserFirstName(firstName);
 		user.setUserEmail(email);
 		user.setUserRole(role);
-		user.setPassWord(ClaimControlUserUtil.cryptPassWord(password));
+		user.setPassWord(password);
 
 		int r = userService.addUser(user);
 
 		msgUserController = (r > 0) ? ClaimConstanteUtil.MSG_CREATE_USER : ClaimConstanteUtil.MSG_FAILED_CREATE_USER;
 
-	}
+	}    
 
 	public void updateUserProfilController(String name, String firstName, String email, int id) {
 
@@ -61,7 +76,7 @@ public class UserController {
 	}
 
 	public void updatePassWordController(String oldPassword, String newPassword) {
-		if (ClaimControlUserUtil.controlUpdatePassWord(oldPassword, newPassword)) {
+		if (ClaimControlUserUtil.checkAllFields(oldPassword, newPassword)) {
 
 			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;
 			return;
@@ -73,35 +88,60 @@ public class UserController {
 				: (r == 1) ? ClaimConstanteUtil.MSG_PASSWORD_INVALID : ClaimConstanteUtil.MSG_UPDATE_PASSWORD;
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
+	
+	public User findUserByIdController(int id) {
+		if (id < 1) {
+			msgUserController = ClaimConstanteUtil.MSG_VALIDE_ID;
+			return null;
+		}
+
+		User user = userService.findUserById(id);
+
+		if (user == null) {
+			msgUserController = ClaimConstanteUtil.MSG_FAILLED_FIND_USER;
+			return null;
+		}
+
+		return user; 
+	}
+	
+	public User findUserByNameController(String name) {
+		if (ClaimControlUserUtil.checkAllFields(name)) {
+			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;
+			return null;
+		}
+		User user = userService.findUserByName(name);
+
+		if (user == null) {
+			msgUserController = ClaimConstanteUtil.MSG_FAILLED_FIND_USER;
+			return null;
+		}
+
+		return user;
+	}
+	
+	public User findUserByFirstNameController(String firstName) {
+		if (ClaimControlUserUtil.checkAllFields(firstName)) {
+			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;
+			return null;
+		}
+		User user = userService.findUserByFirstName(firstName);
+
+		if (user == null) {
+			msgUserController = ClaimConstanteUtil.MSG_FAILLED_FIND_USER;
+			return null;
+		}
+
+		return user;
+	}
+	
+	public List<User> findAllUserController(){
+		 List <User> allUser = userService.findAllUser();
+		 
+		 return allUser ;
+	}
+	
 	public User loginController(String user_email, String password) {
 		if (ClaimControlUserUtil.checkAllFields(user_email, password)) {
 			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;
@@ -117,11 +157,51 @@ public class UserController {
 
 		if (user == null) {
 			msgUserController = ClaimConstanteUtil.MSG_ERROR_LOGIN;
-		} else {
-			return user;
+			return null;
 		}
 
-		return null;
+		return user;   
+	}
+	
+	public void disableUserController(int id) {
+		if (id < 1) {
+			msgUserController = ClaimConstanteUtil.MSG_VALIDE_ID;
+			return ;
+		}
+		
+		int r = userService.disableUser(id);
+
+		msgUserController = (r > 0) ? ClaimConstanteUtil.MSG_DISABLE_USER_STATUS
+				          : ClaimConstanteUtil.MSG_FAILED_DISABLE_USER_STATUS; 
+	}
+	
+	public void enableUserController(int id) {
+		if (id < 1) {
+			msgUserController = ClaimConstanteUtil.MSG_VALIDE_ID;
+			return ;  
+		}
+		
+		int r = userService.enableUser(id);
+
+		msgUserController = (r > 0) ? ClaimConstanteUtil.MSG_ENABLE_USER_STATUS
+			            	: ClaimConstanteUtil.MSG_FAILED_ENABLE_USER_STATUS ; 
 	}
 
+	public void deleteUserController(int id) {
+		if (id < 1) {
+			msgUserController = ClaimConstanteUtil.MSG_VALIDE_ID;
+			return ;  
+		}
+		
+		int r = userService.deleteUser(id);
+
+		msgUserController = (r > 0) ? ClaimConstanteUtil.QUERY_USER_DELETE
+			            	: ClaimConstanteUtil.QUERY_FAILED_USER_DELETE ; 
+	}
+
+	
+	
+	
+	
+	
 }

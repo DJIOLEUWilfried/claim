@@ -37,10 +37,7 @@ public class UserServiceImpl implements UserService {
 			r = pre.executeUpdate();
 
 		} catch (SQLException e) {
-			
-			// System.out.println("\n Erreur == " + e.getMessage());
-			
-			logger.warning(String.format("\n Error : ", e));
+			logger.warning(String.format("\n Error : %s", e));
 
 		}
 
@@ -63,14 +60,14 @@ public class UserServiceImpl implements UserService {
 
 			r = pre.executeUpdate();
 
-		} catch (Exception e) {
-			System.out.println("\n Erreur == " + e.getMessage());
+		} catch (SQLException e) {
 
-			logger.warning(String.format("\n Error : ", e.getMessage()));
+			logger.warning(String.format("\n Error : %s", e));
 		}
 		
 		return r;
 	}
+
 	
 	@Override
 	public int updatePassWord(String oldPassword, String newPassword) {
@@ -88,13 +85,14 @@ public class UserServiceImpl implements UserService {
 
 			r = pre.executeUpdate();
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			
-			logger.warning(String.format("\n Error : ", e.getMessage()));
+			logger.warning(String.format("\n Error : %s", e.getMessage()));
 		}
 		
         return r;
 	}
+	
 	
 	@Override
 	public boolean findPassWord(String passWord) {
@@ -111,9 +109,9 @@ public class UserServiceImpl implements UserService {
 				return true;
 			}
 
-		}catch (Exception e) {
+		}catch (SQLException e) {
 
-			logger.warning(String.format(" Error : ", e.getMessage()));
+			logger.warning(String.format("\n Error : %s", e));
 		}
 		
         return false;
@@ -133,13 +131,11 @@ public class UserServiceImpl implements UserService {
 
 			id = pre.executeUpdate();
 
-			// msgUser = ClaimConstanteUtil.MSG_DISABLE_USER_STATUS;
-
 			return id;
 
-		} catch (Exception e) { 
+		} catch (SQLException e) { 
 
-			logger.warning(String.format(ClaimConstanteUtil.MSG_FAILED_DISABLE_USER_STATUS, " Error : ", e.getMessage()));
+			logger.warning(String.format("\n Error : %s", e));
 
 			return 0;
 		}
@@ -160,13 +156,11 @@ public class UserServiceImpl implements UserService {
 
 			id = pre.executeUpdate();
 
-			// msgUser = ClaimConstanteUtil.MSG_FAILED_ENABLE_USER_STATUS;
-
 			return id;
 
 		} catch (SQLException e) {
 
-			logger.warning(String.format(ClaimConstanteUtil.MSG_ENABLE_USER_STATUS, " Error : ", e.getMessage()));
+			logger.warning(String.format("\n Error : %s", e));
 		}
 		
 		return 0;
@@ -184,18 +178,17 @@ public class UserServiceImpl implements UserService {
 
 			id = pre.executeUpdate();  
 
-			// msgUser = ClaimConstanteUtil.QUERY_USER_DELETE;
-
 			return id;
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			
-			logger.warning(String.format(ClaimConstanteUtil.QUERY_FAILED_USER_DELETE, " Error : ", e.getMessage()));
+			logger.warning(String.format("\n Error : %s", e));
 		}
 		
 		return 0;
 	}
 
+	
 	@Override
 	public User findUserById(int id) {
 
@@ -214,18 +207,16 @@ public class UserServiceImpl implements UserService {
 				user.setIdUser(rs.getInt("id_user"));
 				user.setUserName(rs.getString("user_name"));
 				user.setUserFirstName(rs.getString("user_first_name"));
-				user.setUserEmail(rs.getString("email"));
+				user.setUserEmail(rs.getString("user_email"));
 				user.setUserRole(rs.getString("user_role"));
 				user.setUserStatus(rs.getBoolean("user_status"));
 
 				return user;
 			}
-
-			// msgUser = ClaimConstanteUtil.MSG_INVALID_SEARCH;
 			
-		} catch (Exception e) {
+		} catch (SQLException e) {
 
-			logger.warning(String.format(ClaimConstanteUtil.MSG_FAILLED_FIND_USER, " Error : ", e.getMessage()));
+			logger.warning(String.format("\n Error : %s", e));
 
 		}
 
@@ -233,6 +224,7 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	
 	@Override
 	public User findUserByName(String name) {
 
@@ -251,23 +243,22 @@ public class UserServiceImpl implements UserService {
 				user.setIdUser(rs.getInt("id_user"));
 				user.setUserName(rs.getString("user_name"));
 				user.setUserFirstName(rs.getString("user_first_name"));
-				user.setUserEmail(rs.getString("email"));
+				user.setUserEmail(rs.getString("user_email"));
 				user.setUserRole(rs.getString("user_role"));
 				user.setUserStatus(rs.getBoolean("user_status"));
 
 				return user;
 			}
 
-			// msgUser = ClaimConstanteUtil.MSG_INVALID_SEARCH;
-			
-		} catch (Exception e) {
+		} catch (SQLException e) {
 
-			logger.warning(String.format(ClaimConstanteUtil.MSG_FAILLED_FIND_USER, " Error : ", e.getMessage()));
+			logger.warning(String.format("\n Error : %s", e));
 		}
 		
 		return null;
 	}
 
+	
 	@Override
 	public User findUserByFirstName(String firstName) {
 
@@ -286,25 +277,23 @@ public class UserServiceImpl implements UserService {
 				user.setIdUser(rs.getInt("id_user"));
 				user.setUserName(rs.getString("user_name"));
 				user.setUserFirstName(rs.getString("user_first_name"));
-				user.setUserEmail(rs.getString("email"));
+				user.setUserEmail(rs.getString("user_email"));
 				user.setUserRole(rs.getString("user_role"));
 				user.setUserStatus(rs.getBoolean("user_status"));
 
 				return user;
 			}
 			
-			// msgUser = ClaimConstanteUtil.MSG_INVALID_SEARCH;
+		} catch (SQLException e) {
 
-
-		} catch (Exception e) {
-
-			logger.warning(String.format(ClaimConstanteUtil.MSG_FAILLED_FIND_USER, " Error : ", e.getMessage()));
+			logger.warning(String.format("\n Error : %s", e));
 		}
 
 		return null;
 
 	}
 
+	
 	@Override
 	public List<User> findAllUser() {
 
@@ -315,7 +304,6 @@ public class UserServiceImpl implements UserService {
 
 			Statement stm = con.createStatement();
 
-
 			ResultSet rs = stm.executeQuery(ClaimConstanteUtil.QUERY_FIND_ALL_USER);
 			while (rs.next()) {
 				User user = new User();
@@ -323,7 +311,7 @@ public class UserServiceImpl implements UserService {
 				user.setIdUser(rs.getInt("id_user"));
 				user.setUserName(rs.getString("user_name"));
 				user.setUserFirstName(rs.getString("user_first_name"));
-				user.setUserEmail(rs.getString("email"));
+				user.setUserEmail(rs.getString("user_email"));
 				user.setUserRole(rs.getString("user_role"));
 				user.setUserStatus(rs.getBoolean("user_status"));
 
@@ -333,11 +321,12 @@ public class UserServiceImpl implements UserService {
 			return allUser;
 			
 		} catch (SQLException e) {
-			logger.warning(String.format(" Error : ", e.getMessage()));
+			logger.warning(String.format("\n Error : %s", e));
 		}
 		
 		return allUser;
 	}
+	
 	
 	@Override
 	public User login(String user_email, String password) {
@@ -357,25 +346,20 @@ public class UserServiceImpl implements UserService {
 				User user = new User();
 				
 				user.setUserName(rs.getString("user_name"));
-
+				user.setUserRole(rs.getString("user_role"));
+				
 				return user;
 			}
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 
-			logger.warning(String.format(ClaimConstanteUtil.MSG_FAILLED_FIND_USER, " Error : ", e.getMessage()));
-			
-			System.out.println("\n  Erreur : " + e.getMessage());
-		}
+			logger.warning(String.format("\n Error : %s", e));
+					}
 		
 		return null;
 	}
 
-	@Override
-	public int logout(String user_email, String password) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 
 

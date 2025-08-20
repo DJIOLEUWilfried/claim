@@ -19,6 +19,8 @@ public interface UserService {
 	int enableUser(int id);
 
 	int deleteUser(int id);
+	
+	User login(String user_email, String password);
 
 	User findUserById(int id);
 
@@ -28,9 +30,6 @@ public interface UserService {
 
 	List<User> findAllUser();
 	
-	User login(String user_email, String password);
 	
-	int logout(String user_email, String password);
-
 
 }

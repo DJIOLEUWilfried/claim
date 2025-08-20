@@ -16,8 +16,8 @@ public class ClaimConstanteUtil {
 	public static final String QUERY_UPDATE_USER_PROFIL = "UPDATE users SET user_name=?, user_first_name=?, user_email=? WHERE id_user=?";
 	public static final String QUERY_UPDATE_PASSWORD = "UPDATE users SET password=? WHERE password=?";
 	public static final String QUERY_FIND_PASSWORD = "SELECT password FROM users WHERE password=?";
-	public static final String QUERY_STAUT_USER = "UPDATE users SET user_status=? WHERE id_utilisateur=?";	
-	public static final String QUERY_DELETE_USER = "DELETE users WHERE id_utilisateur=?";
+	public static final String QUERY_STAUT_USER = "UPDATE users SET user_status=? WHERE id_user=?";	
+	public static final String QUERY_DELETE_USER = "DELETE FROM users WHERE id_user=?";
 	public static final String QUERY_FIND_USER_BY_ID = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status FROM users WHERE id_user=?";
 	public static final String QUERY_FIND_USER_BY_NAME = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status WHERE user_name=?";
 	public static final String QUERY_FIND_USER_BY_FIRST_NAME = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status FROM users WHERE user_first_name=?";
@@ -47,8 +47,12 @@ public class ClaimConstanteUtil {
 	public static final String MSG_INVALID_EMAIL = "Invalid email !!";   
 	public static final String MSG_PASSWORD_INVALID = "This password does not exist !!";
 	public static final String MSG_ERROR_LOGIN = "Your login details are incorrect !!";
+	public static final String MSG_VALIDE_ID = "Please enter a valid id";
+	public static final String MSG_FAILED_SEND_PASSWORD = "Failed to send password via email address !!";
+	public static final String MSG_INVALID_ROLE = "Please enter a valid role !!";
 	
-	// Resource
+	
+	// Resource   
 	public static final String QUERY_CREATE_RESOURCE = "INSERT INTO resource (resource_name, resource_description, category_id) VALUES (?, ?, ?)";
 	public static final String QUERY_UPDATE_RESOURCE = "UPDATE resource SET resource_name=?, description_resource=?, category_id=? WHERE resource_id=?" ;
 	public static final String QUERY_DELETE_RESOURCE = "DELETE resource FROM resource_id=?" ;  

@@ -36,9 +36,17 @@ public class Main {
 		userController.addUserController(nom, prenom, email, role, passWord);
 		System.out.println(UserController.msgUserController);
 		
+		|| !"admin".equalsIgnoreCase("admin")
 		*/
 		
-		System.out.println(" Entrer le nom : ");
+		if ("uSer".equalsIgnoreCase("user") || "admin" != "admin") {
+			System.out.println("\n\n Oui");
+		}
+		else {
+			System.out.println("\n\n Non");
+		}
+		
+			
 		
 		
 
