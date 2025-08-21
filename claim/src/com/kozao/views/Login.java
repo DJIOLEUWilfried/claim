@@ -45,11 +45,16 @@ public class Login {
 
 					User user = userController.loginController(email, password);
 
-					if (user == null) {
+					if (user == null ) {
 						System.out.println(UserController.msgUserController);
 					} else {
-						userSession = user.getUserName();
-						if (user.getUserRole() == "user") {  DashboardUser.main(args);  }
+						if ( !user.getUserStatus() ) { 
+							System.out.println(UserController.msgUserController);
+							return;
+						}
+						userSession = user.getUserFirstName();
+						
+						if (user.getUserRole().equals("user")) {  DashboardUser.main(args);  }
 						else {  DashboardAdmin.main(args);  }
 					}
 

@@ -20,7 +20,7 @@ public interface UserService {
 
 	int deleteUser(int id);
 	
-	User login(String user_email, String password);
+	User login(String user_email);
 
 	User findUserById(int id);
 

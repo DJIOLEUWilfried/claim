@@ -52,7 +52,7 @@ public class DashboardAdmin {
 
 					System.out.println("\n Enter role (user or admin) : ");
 					role = sc.nextLine().trim();
-
+					
 					userController.addUserController(name, firstName, email, role);
 					System.out.println(UserController.msgUserController);
 
@@ -191,7 +191,10 @@ public class DashboardAdmin {
 		
 		System.out.println("\n Select an option using its letter : ");
 
-
-	}  
+	} 
+	
+	
+	
+	
 
 }

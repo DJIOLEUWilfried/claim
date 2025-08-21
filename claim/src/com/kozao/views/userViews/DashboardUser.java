@@ -12,7 +12,8 @@ public class DashboardUser {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("\n\t\t\t\t Bienvenu, " + Login.userSession + " !");
+        System.out.println(String.format("\n\t\t Welcome, %s !", Login.userSession.toUpperCase()));
+
 		System.out.println("\n ======   a- Envoyer une reclamation   ======");
 		System.out.println("\n ======   a- Login   ======");
 		

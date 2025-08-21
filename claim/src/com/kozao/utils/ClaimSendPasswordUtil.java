@@ -26,7 +26,7 @@ public class ClaimSendPasswordUtil {
 		final String expediteurEmail = "djioleuwilfried@gmail.com";
         final String motDePasseApp = "phuw pmkm cbui cpjs"; // Mot de passe d'application Gmail
 
-        String destinataire = email;  // andymat080@gmail.com
+        String destinataire = email;  
         String sujet = "Mot de passe de votre compte";
         String contenu = String.format("\n Bonjour %s, votre mot de passe est : %s", nameUser.toUpperCase(), password);
 

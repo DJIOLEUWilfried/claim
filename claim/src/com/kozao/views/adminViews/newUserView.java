@@ -30,7 +30,7 @@ public class newUserView {
 		System.out.println("\n Entrer le mot de passe : ");
 		passWord = sc.nextLine().trim();
 
-		userController.addUserController(nom, prenom, email, role, passWord);
+		userController.addUserController(nom, prenom, email, role);
 		System.out.println(UserController.msgUserController);
 		
 	

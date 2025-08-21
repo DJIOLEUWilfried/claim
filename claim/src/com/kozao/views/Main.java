@@ -2,7 +2,10 @@ package com.kozao.views;
 
 import java.util.Scanner;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import com.kozao.controllers.UserController;
+import com.kozao.utils.ClaimControlUserUtil;
 
 
 
@@ -39,15 +42,24 @@ public class Main {
 		|| !"admin".equalsIgnoreCase("admin")
 		*/
 		
-		if ("uSer".equalsIgnoreCase("user") || "admin" != "admin") {
-			System.out.println("\n\n Oui");
-		}
-		else {
-			System.out.println("\n\n Non");
-		}
 		
-			
 		
+		String motDePasse = "monSecret123";
+        String motDePasseHache = BCrypt.hashpw(motDePasse, BCrypt.gensalt(12));
+
+        System.out.println("\n Mot de passe haché : " + motDePasseHache);
+
+        // Simulation d'une saisie utilisateur
+        
+        String saisieUtilisateur = "monSecret123";
+
+        if ( BCrypt.checkpw("Claim66", "$2a$10$lHIYh55NOMdK5EhMG6WgVeRp1iJAcCmd/0qh3E1KyQv8qfqrOkFXO") ) {
+        	
+            System.out.println(" Correct !");
+            
+        } else {
+            System.out.println(" Incorrect.");
+        }
 		
 
 	}

@@ -1,6 +1,5 @@
 package com.kozao.services;
 
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +7,6 @@ import java.util.logging.Logger;
 
 import com.kozao.models.*;
 import com.kozao.utils.ClaimConstanteUtil;
-
 
 public class UserServiceImpl implements UserService {
 
@@ -19,9 +17,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int addUser(User user) {
-        int r = 0 ;
-		
-        try {
+		int r = 0;
+
+		try {
 
 			Connection con = ConnexionDB.getConnection();
 
@@ -44,7 +42,6 @@ public class UserServiceImpl implements UserService {
 		return r;
 	}
 
-	
 	@Override
 	public int updateUserProfil(User user) {
 		int r = 0;
@@ -64,19 +61,20 @@ public class UserServiceImpl implements UserService {
 
 			logger.warning(String.format("\n Error : %s", e));
 		}
-		
+
 		return r;
 	}
 
-	
 	@Override
 	public int updatePassWord(String oldPassword, String newPassword) {
-        int r = 0;
-        
-		if (!findPassWord(oldPassword)) {  return 1;  }
+		int r = 0;
+
+		if (!findPassWord(oldPassword)) {
+			return 1;
+		}
 
 		try {
-			
+
 			Connection con = ConnexionDB.getConnection();
 			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_UPDATE_PASSWORD);
 
@@ -86,14 +84,13 @@ public class UserServiceImpl implements UserService {
 			r = pre.executeUpdate();
 
 		} catch (SQLException e) {
-			
+
 			logger.warning(String.format("\n Error : %s", e.getMessage()));
 		}
-		
-        return r;
+
+		return r;
 	}
-	
-	
+
 	@Override
 	public boolean findPassWord(String passWord) {
 
@@ -104,20 +101,19 @@ public class UserServiceImpl implements UserService {
 			pre.setString(1, passWord);
 
 			int rst = pre.executeUpdate();
-			
+
 			if (rst > 0) {
 				return true;
 			}
 
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 
 			logger.warning(String.format("\n Error : %s", e));
 		}
-		
-        return false;
+
+		return false;
 	}
-	
-	
+
 	@Override
 	public int disableUser(int id) {
 		try {
@@ -133,7 +129,7 @@ public class UserServiceImpl implements UserService {
 
 			return id;
 
-		} catch (SQLException e) { 
+		} catch (SQLException e) {
 
 			logger.warning(String.format("\n Error : %s", e));
 
@@ -142,7 +138,6 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-	
 	@Override
 	public int enableUser(int id) {
 		try {
@@ -162,11 +157,10 @@ public class UserServiceImpl implements UserService {
 
 			logger.warning(String.format("\n Error : %s", e));
 		}
-		
+
 		return 0;
 	}
 
-	
 	@Override
 	public int deleteUser(int id) {
 		try {
@@ -176,19 +170,18 @@ public class UserServiceImpl implements UserService {
 			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_DELETE_USER);
 			pre.setInt(1, id);
 
-			id = pre.executeUpdate();  
+			id = pre.executeUpdate();
 
 			return id;
 
 		} catch (SQLException e) {
-			
+
 			logger.warning(String.format("\n Error : %s", e));
 		}
-		
+
 		return 0;
 	}
 
-	
 	@Override
 	public User findUserById(int id) {
 
@@ -213,7 +206,7 @@ public class UserServiceImpl implements UserService {
 
 				return user;
 			}
-			
+
 		} catch (SQLException e) {
 
 			logger.warning(String.format("\n Error : %s", e));
@@ -224,7 +217,6 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-	
 	@Override
 	public User findUserByName(String name) {
 
@@ -254,11 +246,10 @@ public class UserServiceImpl implements UserService {
 
 			logger.warning(String.format("\n Error : %s", e));
 		}
-		
+
 		return null;
 	}
 
-	
 	@Override
 	public User findUserByFirstName(String firstName) {
 
@@ -283,7 +274,7 @@ public class UserServiceImpl implements UserService {
 
 				return user;
 			}
-			
+
 		} catch (SQLException e) {
 
 			logger.warning(String.format("\n Error : %s", e));
@@ -293,13 +284,12 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-	
 	@Override
 	public List<User> findAllUser() {
 
 		List<User> allUser = new ArrayList<>();
 
-		try  {
+		try {
 			Connection con = ConnexionDB.getConnection();
 
 			Statement stm = con.createStatement();
@@ -317,53 +307,45 @@ public class UserServiceImpl implements UserService {
 
 				allUser.add(user);
 			}
-			
+
 			return allUser;
-			
+
 		} catch (SQLException e) {
 			logger.warning(String.format("\n Error : %s", e));
 		}
-		
+
 		return allUser;
 	}
-	
-	
+
 	@Override
-	public User login(String user_email, String password) {
-		
+	public User login(String user_email) {
+
 		try {
 
 			Connection con = ConnexionDB.getConnection();
 
-			// QUERY_LOGIN_USER = "SELECT user_name users FROM user_email=?, password=?" ;
-			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_LOGIN_USER);
+			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_FIND_EMAIL);
 
 			pre.setString(1, user_email);
-			pre.setString(2, password);
 
 			ResultSet rs = pre.executeQuery();
 			if (rs.next()) {
 				User user = new User();
-				
-				user.setUserName(rs.getString("user_name"));
+
+				user.setUserFirstName(rs.getString("user_first_name"));
 				user.setUserRole(rs.getString("user_role"));
-				
+				user.setUserStatus(rs.getBoolean("user_status"));
+				user.setPassWord(rs.getString("password"));
+
 				return user;
 			}
 
 		} catch (SQLException e) {
 
 			logger.warning(String.format("\n Error : %s", e));
-					}
-		
+		}
+
 		return null;
 	}
-
-
-
-
-
-
-
 
 }

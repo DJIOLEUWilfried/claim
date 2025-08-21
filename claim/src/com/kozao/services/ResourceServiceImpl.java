@@ -34,10 +34,7 @@ public class ResourceServiceImpl implements ResourceService {
 
 		} catch (SQLException e) {
 
-			// System.out.println("\n Erreur == " + e.getMessage());
-
-			// logger.warning(String.format("\n Error : ", e));
-
+		    logger.warning(String.format("\n Error : ", e));
 		}
 
 		return r;
@@ -51,11 +48,6 @@ public class ResourceServiceImpl implements ResourceService {
 
 			Connection con = ConnexionDB.getConnection();
 
-			// id_ressource nom_ressource description_ressource id_categorie
-			// QUERY_UPDATE_RESOURCE = "UPDATE resource SET resource_name=?,
-			// description_resource=?, category_id=?
-			// "WHERE resource_id=?)"
-
 			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_UPDATE_RESOURCE);
 
 			pre.setString(1, res.getResourceName());
@@ -67,9 +59,7 @@ public class ResourceServiceImpl implements ResourceService {
 
 		} catch (SQLException e) {
 
-			// System.out.println("\n Erreur == " + e.getMessage());
-
-			// logger.warning(String.format("\n Error : ", e));
+			logger.warning(String.format("\n Error : ", e));
 		}
 
 		return r;
@@ -91,9 +81,7 @@ public class ResourceServiceImpl implements ResourceService {
 
 		} catch (SQLException e) {
 
-			// System.out.println("\n Erreur == " + e.getMessage());
-
-			// logger.warning(String.format("\n Error : ", e));
+			logger.warning(String.format("\n Error : ", e));
 		}
 
 		return r;
@@ -106,7 +94,6 @@ public class ResourceServiceImpl implements ResourceService {
 
 			Connection con = ConnexionDB.getConnection();
 
-			// QUERY_FIND_RESOURCE_BY_ID = "SELECT resource_id, resource_name, resource_description, category_id FROM resource WHERE resource_id=?";
 			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_FIND_RESOURCE_BY_ID);
 
 			pre.setInt(1, id);
@@ -118,13 +105,9 @@ public class ResourceServiceImpl implements ResourceService {
 				pre.setInt(1, res.getIdResource()); 
 				pre.setString(2, res.getResourceName());
 				pre.setString(3, res.getResourceDescription());
-				// pre.setString(4, res.getCat());
 				 
-
 				return res;
 			}
-
-			// msgUser = ClaimConstanteUtil.MSG_INVALID_SEARCH;
 
 		} catch (Exception e) {
 

@@ -19,10 +19,11 @@ public class ClaimConstanteUtil {
 	public static final String QUERY_STAUT_USER = "UPDATE users SET user_status=? WHERE id_user=?";	
 	public static final String QUERY_DELETE_USER = "DELETE FROM users WHERE id_user=?";
 	public static final String QUERY_FIND_USER_BY_ID = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status FROM users WHERE id_user=?";
-	public static final String QUERY_FIND_USER_BY_NAME = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status WHERE user_name=?";
+	public static final String QUERY_FIND_USER_BY_NAME = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status FROM users WHERE user_name=?";
 	public static final String QUERY_FIND_USER_BY_FIRST_NAME = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status FROM users WHERE user_first_name=?";
 	public static final String QUERY_FIND_ALL_USER = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status FROM users ";
-	public static final String QUERY_LOGIN_USER = "SELECT user_name FROM users WHERE user_email=? AND password=?" ;
+	public static final String QUERY_LOGIN_USER = "SELECT user_name, user_role FROM users WHERE user_email=? AND password=?" ;
+	public static final String QUERY_FIND_EMAIL = "SELECT user_first_name, user_role, user_status, password FROM users WHERE user_email=?" ;
 
 	
 	public static final String CHAMP_IS_EMPTY = "\n Please fill in all fields !!" ;
@@ -50,7 +51,8 @@ public class ClaimConstanteUtil {
 	public static final String MSG_VALIDE_ID = "Please enter a valid id";
 	public static final String MSG_FAILED_SEND_PASSWORD = "Failed to send password via email address !!";
 	public static final String MSG_INVALID_ROLE = "Please enter a valid role !!";
-	
+	public static final String MSG_DISABLE_STATUS = "Unable to log in, you have been disabled by the administrator. Please contact them !!" ;
+
 	
 	// Resource   
 	public static final String QUERY_CREATE_RESOURCE = "INSERT INTO resource (resource_name, resource_description, category_id) VALUES (?, ?, ?)";
