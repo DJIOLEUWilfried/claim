@@ -1,16 +1,22 @@
 package com.kozao.services;
 
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import com.kozao.models.*;
 import com.kozao.utils.ClaimConstanteUtil;
 
+
+
+
 public class UserServiceImpl implements UserService {
 
-	public static Logger logger = Logger.getLogger(UserServiceImpl.class.getName());
+	private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
 
 	public UserServiceImpl() {
 	}
@@ -22,7 +28,6 @@ public class UserServiceImpl implements UserService {
 		try {
 
 			Connection con = ConnexionDB.getConnection();
-
 			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_CREATE_USER);
 
 			pre.setString(1, user.getUserName());
@@ -35,7 +40,7 @@ public class UserServiceImpl implements UserService {
 			r = pre.executeUpdate();
 
 		} catch (SQLException e) {
-			logger.warning(String.format("\n Error : %s", e));
+			logger.error(String.format("\n Error : %s", e));
 
 		}
 
@@ -59,7 +64,7 @@ public class UserServiceImpl implements UserService {
 
 		} catch (SQLException e) {
 
-			logger.warning(String.format("\n Error : %s", e));
+			logger.error(String.format("\n Error : %s", e));
 		}
 
 		return r;
@@ -85,7 +90,7 @@ public class UserServiceImpl implements UserService {
 
 		} catch (SQLException e) {
 
-			logger.warning(String.format("\n Error : %s", e.getMessage()));
+			logger.error(String.format("\n Error : %s", e.getMessage()));
 		}
 
 		return r;
@@ -108,7 +113,7 @@ public class UserServiceImpl implements UserService {
 
 		} catch (SQLException e) {
 
-			logger.warning(String.format("\n Error : %s", e));
+			logger.error(String.format("\n Error : %s", e));
 		}
 
 		return false;
@@ -131,7 +136,7 @@ public class UserServiceImpl implements UserService {
 
 		} catch (SQLException e) {
 
-			logger.warning(String.format("\n Error : %s", e));
+			logger.error(String.format("\n Error : %s", e));
 
 			return 0;
 		}
@@ -155,7 +160,7 @@ public class UserServiceImpl implements UserService {
 
 		} catch (SQLException e) {
 
-			logger.warning(String.format("\n Error : %s", e));
+			logger.error(String.format("\n Error : %s", e));
 		}
 
 		return 0;
@@ -176,7 +181,7 @@ public class UserServiceImpl implements UserService {
 
 		} catch (SQLException e) {
 
-			logger.warning(String.format("\n Error : %s", e));
+			logger.error(String.format("\n Error : %s", e));
 		}
 
 		return 0;
@@ -209,7 +214,7 @@ public class UserServiceImpl implements UserService {
 
 		} catch (SQLException e) {
 
-			logger.warning(String.format("\n Error : %s", e));
+			logger.error(String.format("\n Error : %s", e));
 		}
 
 		return null;
@@ -243,7 +248,7 @@ public class UserServiceImpl implements UserService {
 
 		} catch (SQLException e) {
 
-			logger.warning(String.format("\n Error : %s", e));
+			logger.error(String.format("\n Error : %s", e));
 		}
 
 		return null;
@@ -276,7 +281,7 @@ public class UserServiceImpl implements UserService {
 
 		} catch (SQLException e) {
 
-			logger.warning(String.format("\n Error : %s", e));
+			logger.error(String.format("\n Error : %s", e));
 		}
 
 		return null;
@@ -310,7 +315,7 @@ public class UserServiceImpl implements UserService {
 			return allUser;
 
 		} catch (SQLException e) {
-			logger.warning(String.format("\n Error : %s", e));
+			logger.error(String.format("\n Error : %s", e));
 		}
 
 		return allUser;
@@ -341,7 +346,7 @@ public class UserServiceImpl implements UserService {
 
 		} catch (SQLException e) {
 
-			logger.warning(String.format("\n Error : %s", e));
+			logger.error(String.format("\n Error : %s", e));
 		}
 
 		return null;
