@@ -9,7 +9,7 @@ import com.kozao.models.User;
 
 public interface ClaimService {
 
-	int addReclamation(Claim claim, User user, Resource resource);
+	int addReclamation(Claim claim, int userId, int resourceId);
 
 	int updateReclamation(Claim claim, User user, Resource resource);
 
