@@ -63,7 +63,10 @@ public class ClaimConstanteUtil {
 	public static final String QUERY_FIND_ALL_RESOURCE = "SELECT resource_id, resource_name, resource_description FROM resource ";
 
 	
-	
+	// Claim
+    //   id_claim	reason	submission_date	 confirmation_date	priority	status_claim	id_user	resource_id
+	public static final String QUERY_CREATE_CLAIM = "INSERT INTO claim (reason, submission_date, confirmation_date, priority, status_claim, id_user, resource_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
 	
 	
 	
