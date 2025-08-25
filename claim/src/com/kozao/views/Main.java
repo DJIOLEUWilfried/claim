@@ -43,23 +43,29 @@ public class Main {
 		*/
 		
 		
+//		
+//		String motDePasse = "monSecret123";
+//        String motDePasseHache = BCrypt.hashpw(motDePasse, BCrypt.gensalt(12));
+//
+//        System.out.println("\n Mot de passe haché : " + motDePasseHache);
+//
+//        // Simulation d'une saisie utilisateur
+//        
+//        String saisieUtilisateur = "monSecret123";
+//
+//        if ( BCrypt.checkpw("Claim66", "$2a$10$lHIYh55NOMdK5EhMG6WgVeRp1iJAcCmd/0qh3E1KyQv8qfqrOkFXO") ) {
+//        	
+//            System.out.println(" Correct !");
+//            
+//        } else {
+//            System.out.println(" Incorrect.");
+//        }
 		
-		String motDePasse = "monSecret123";
-        String motDePasseHache = BCrypt.hashpw(motDePasse, BCrypt.gensalt(12));
+        // System.out.println("\n Enumeration : " + StatusClaim.PENDING);
 
-        System.out.println("\n Mot de passe haché : " + motDePasseHache);
-
-        // Simulation d'une saisie utilisateur
         
-        String saisieUtilisateur = "monSecret123";
-
-        if ( BCrypt.checkpw("Claim66", "$2a$10$lHIYh55NOMdK5EhMG6WgVeRp1iJAcCmd/0qh3E1KyQv8qfqrOkFXO") ) {
-        	
-            System.out.println(" Correct !");
-            
-        } else {
-            System.out.println(" Incorrect.");
-        }
+        
+		
 		
 
 	}
