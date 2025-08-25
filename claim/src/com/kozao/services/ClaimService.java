@@ -4,17 +4,20 @@ import java.util.List;
 
 import com.kozao.models.Category;
 import com.kozao.models.Claim;
+import com.kozao.models.Resource;
 import com.kozao.models.User;
 
 public interface ClaimService {
 
-	Claim addReclamation(Claim claim, User user, Category cat);
+	int addReclamation(Claim claim, User user, Resource resource);
 
-	Claim updateReclamation(Claim claim, User user, Category cat);
+	int updateReclamation(Claim claim, User user, Resource resource);
 
-	Claim deleteReclamation(int id);
+	int deleteReclamation(int claimId);
 
-	Claim findReclamation(Claim recl);
+	Claim findReclamationById(int claimId);
+	
+	Claim findReclamationByIdUser(int userId);
 
 	List<Claim> findAllReclamation();
 
