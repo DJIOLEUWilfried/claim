@@ -1,5 +1,7 @@
 package com.kozao.models;
 
+import java.util.List;
+
 /**
  * 
  * @author DJIOLEU Wilfried
@@ -16,6 +18,8 @@ public class User {
 	private boolean UserStatus;
 	private String passWord;
 	
+	private List<Claim> claims;
+	
 	
 	public User() {
 		super();
@@ -30,16 +34,7 @@ public class User {
 	 * @param userStatus
 	 * @param passWord
 	 */
-	public User(String userName, String userFirstName, String userEmail, String userRole, boolean userStatus,
-			String passWord) {
-		super();
-		this.userName = userName;
-		this.userFirstName = userFirstName;
-		this.userEmail = userEmail;
-		this.userRole = userRole;
-		UserStatus = userStatus;
-		this.passWord = passWord;
-	}
+	
 	
 	/**
 	 * Return the user id
@@ -48,6 +43,18 @@ public class User {
 	public int getIdUser() {
 		return idUser;
 	}
+	public User(String userName, String userFirstName, String userEmail, String userRole, boolean userStatus,
+			String passWord, List<Claim> claims) {
+		super();
+		this.userName = userName;
+		this.userFirstName = userFirstName;
+		this.userEmail = userEmail;
+		this.userRole = userRole;
+		this.UserStatus = userStatus;
+		this.passWord = passWord;
+		this.claims = claims;
+	}
+
 	/**
 	 * Change the user id
 	 * @param idUser is the new idUser
