@@ -10,17 +10,17 @@ import com.kozao.models.Resource;
 public interface ResourceService {
 	
 	
-    int addRessource(Resource res, int categoryId);
+    int addResource(Resource res);
 	
-    int updateRessource(Resource res, int categoryId) ;
+    int updateResource(Resource res) ;
 	
-    int deleteRessource(int id) ;
+    int deleteResource(int id) ;
 	
-	Resource findRessourceById(int id);
+	Resource findResourceById(int id);
 	
-	Resource findRessourceByName(String name);
+	Resource findResourceByName(String name);
 
-	List<Resource> findAllRessource() ;
+	List<Resource> findAllResources() ;
 	
 
 }
