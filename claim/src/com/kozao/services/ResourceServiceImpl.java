@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale.Category;
 import java.util.logging.Logger;
@@ -112,7 +114,7 @@ public class ResourceServiceImpl implements ResourceService {
 		try {
 
 			Connection con = ConnexionDB.getConnection();
-			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_FIND_USER_BY_ID);
+			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_FIND_RESOURCE_BY_NAME);
 
 			pre.setString(1, name);
 
@@ -137,8 +139,31 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public List<Resource> findAllResources() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<Resource> resource = new ArrayList<>();
+
+		try {
+			Connection con = ConnexionDB.getConnection();
+			Statement stm = con.createStatement();
+
+			ResultSet rs = stm.executeQuery(ClaimConstanteUtil.QUERY_FIND_ALL_RESOURCE);
+			while (rs.next()) {
+				Resource res = new Resource();
+
+				res.setIdResource(rs.getInt("resource_id"));
+				res.setResourceName(rs.getString("resource_name"));
+				res.setResourceDescription(rs.getString("resource_description"));
+
+				resource.add(res);
+			}
+
+			return resource;
+
+		} catch (SQLException e) {
+			logger.warning(String.format("\n Error : %s", e));
+		}
+
+		return resource;
 	}
 
 	
