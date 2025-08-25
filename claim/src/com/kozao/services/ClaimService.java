@@ -2,11 +2,8 @@ package com.kozao.services;
 
 import java.util.List;
 
-import com.kozao.models.Category;
 import com.kozao.models.Claim;
-import com.kozao.models.Resource;
-import com.kozao.models.StatusClaim;
-import com.kozao.models.User;
+import com.kozao.models.enumations.StatusClaim;
 
 public interface ClaimService {
 
