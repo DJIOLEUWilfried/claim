@@ -12,6 +12,7 @@ import com.kozao.utils.ClaimSendPasswordUtil;
 public class UserController {
 
 	UserService userService = new UserServiceImpl();
+	
 	User user = new User();
 	public static String msgUserController;
 
