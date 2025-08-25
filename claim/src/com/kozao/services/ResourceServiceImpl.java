@@ -17,84 +17,74 @@ public class ResourceServiceImpl implements ResourceService {
 	public static Logger logger = Logger.getLogger(UserServiceImpl.class.getName());
 
 	@Override
-	public int addRessource(Resource res, int categoryId) {
+	public int addResource(Resource res) {
 		int r = 0;
 
 		try {
 
 			Connection con = ConnexionDB.getConnection();
-
 			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_CREATE_RESOURCE);
 
 			pre.setString(1, res.getResourceName());
 			pre.setString(2, res.getResourceDescription());
-			pre.setInt(3, categoryId);
 
 			r = pre.executeUpdate();
 
 		} catch (SQLException e) {
-
-		    logger.warning(String.format("\n Error : ", e));
+			logger.warning(String.format("\n Error : %s", e));
 		}
 
 		return r;
 	}
 
 	@Override
-	public int updateRessource(Resource res, int categoryId) {
+	public int updateResource(Resource res) {
 		int r = 0;
-
 		try {
 
 			Connection con = ConnexionDB.getConnection();
-
 			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_UPDATE_RESOURCE);
 
 			pre.setString(1, res.getResourceName());
 			pre.setString(2, res.getResourceDescription());
-			pre.setInt(3, categoryId);
-			pre.setInt(4, res.getIdResource());
+			pre.setInt(3, res.getIdResource());
 
 			r = pre.executeUpdate();
 
 		} catch (SQLException e) {
-
-			logger.warning(String.format("\n Error : ", e));
+			logger.warning(String.format("\n Error : %s", e));
 		}
 
 		return r;
 	}
 
 	@Override
-	public int deleteRessource(int id) {
-		int r = 0;
-
+	public int deleteResource(int id) {
 		try {
 
 			Connection con = ConnexionDB.getConnection();
 
 			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_DELETE_RESOURCE);
-
 			pre.setInt(1, id);
 
-			r = pre.executeUpdate();
+			id = pre.executeUpdate();
+
+			return id;
 
 		} catch (SQLException e) {
 
-			logger.warning(String.format("\n Error : ", e));
+			logger.warning(String.format("\n Error : %s", e));
 		}
 
-		return r;
+		return 0;
 	}
 
 	@Override
-	public Resource findRessourceById(int id) {
-
+	public Resource findResourceById(int id) {
 		try {
 
 			Connection con = ConnexionDB.getConnection();
-
-			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_FIND_RESOURCE_BY_ID);
+			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_FIND_USER_BY_ID);
 
 			pre.setInt(1, id);
 
@@ -102,32 +92,55 @@ public class ResourceServiceImpl implements ResourceService {
 			if (rs.next()) {
 				Resource res = new Resource();
 
-				pre.setInt(1, res.getIdResource()); 
-				pre.setString(2, res.getResourceName());
-				pre.setString(3, res.getResourceDescription());
-				 
+				res.setIdResource(rs.getInt("resource_id"));
+				res.setResourceName(rs.getString("resource_name"));
+				res.setResourceDescription(rs.getString("resource_description"));
+
 				return res;
 			}
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 
-			logger.warning(String.format(ClaimConstanteUtil.MSG_FAILLED_FIND_USER, " Error : ", e.getMessage()));
-
+			logger.warning(String.format("\n Error : %s", e));
 		}
 
 		return null;
 	}
 
 	@Override
-	public Resource findRessourceByName(String name) {
-		// TODO Auto-generated method stub
+	public Resource findResourceByName(String name) {
+		try {
+
+			Connection con = ConnexionDB.getConnection();
+			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_FIND_USER_BY_ID);
+
+			pre.setString(1, name);
+
+			ResultSet rs = pre.executeQuery();
+			if (rs.next()) {
+				Resource res = new Resource();
+
+				res.setIdResource(rs.getInt("resource_id"));
+				res.setResourceName(rs.getString("resource_name"));
+				res.setResourceDescription(rs.getString("resource_description"));
+
+				return res;
+			}
+
+		} catch (SQLException e) {
+
+			logger.warning(String.format("\n Error : %s", e));
+		}
+
 		return null;
 	}
 
 	@Override
-	public List<Resource> findAllRessource() {
+	public List<Resource> findAllResources() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }
