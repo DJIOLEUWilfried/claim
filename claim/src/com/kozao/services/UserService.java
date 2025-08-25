@@ -14,19 +14,19 @@ public interface UserService {
 
 	boolean findPassWord(String passWord);
 
-	int disableUser(int id);
+	int disableUser(int userId);
 
-	int enableUser(int id);
+	int enableUser(int userId);
 
-	int deleteUser(int id);
+	int deleteUser(int userId);
 	
-	User login(String user_email);
+	User login(String userEmail);
 
-	User findUserById(int id);
+	User findUserById(int userId);
 
-	User findUserByName(String name);
+	User findUserByName(String userUame);
 
-	User findUserByFirstName(String firstName);
+	User findUserByFirstName(String userFirstName);
 
 	List<User> findAllUser();
 	
