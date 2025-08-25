@@ -1,21 +1,22 @@
 package com.kozao.services;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Logger;
+
 
 import com.kozao.models.Claim;
-import com.kozao.models.Resource;
 
-import com.kozao.models.User;
 import com.kozao.models.enumations.StatusClaim;
 import com.kozao.utils.ClaimConstanteUtil;
 
 public class ClaimServiceImpl implements ClaimService{
 
-	public static Logger logger = Logger.getLogger(UserServiceImpl.class.getName());
+	private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
 
 	@Override
 	public int addReclamation(Claim claim, StatusClaim statusClaim, int userId, int resourceId) {
@@ -37,7 +38,7 @@ public class ClaimServiceImpl implements ClaimService{
 			r = pre.executeUpdate();
 
 		} catch (SQLException e) {
-			logger.warning(String.format("\n Error : %s", e));
+			logger.error(String.format("\n Error : %s", e));
 		}
 
 		return r;
