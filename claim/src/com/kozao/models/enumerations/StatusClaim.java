@@ -1,10 +1,11 @@
-package com.kozao.models;
+package com.kozao.models.enumerations;
+
 
 public enum StatusClaim {
 	
-	PENDING,
+	PENDING, 
 	INPROGRESS,
 	RESOLVED,
 	REJETED
-	
+
 }
