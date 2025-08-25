@@ -7,14 +7,14 @@ public class Claim {
 	private String submissionDate ;
 	private String confirmationDate ;
 	private String priority ;
-	private boolean statusClaim;
+	private StatusClaim statusClaim;
 	
 	private User user;
 	private Resource resource_id;
 
 	public Claim() {}
 	
-	public Claim(String reason, String submissionDate, String confirmationDate, String priority, boolean statusClaim,
+	public Claim(String reason, String submissionDate, String confirmationDate, String priority, StatusClaim statusClaim,
 			User user, Resource resource_id) {
 		super();
 		this.reason = reason;
@@ -56,10 +56,10 @@ public class Claim {
 	public void setPriority(String priority) {
 		this.priority = priority;
 	}
-	public boolean isStatusClaim() {
+	public StatusClaim isStatusClaim() {
 		return statusClaim;
 	}
-	public void setStatusClaim(boolean statusClaim) {
+	public void setStatusClaim(StatusClaim statusClaim) {
 		this.statusClaim = statusClaim;
 	}
 	public User getUser() {
