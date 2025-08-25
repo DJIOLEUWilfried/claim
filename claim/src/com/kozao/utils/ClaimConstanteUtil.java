@@ -4,7 +4,7 @@ public class ClaimConstanteUtil {
 	
 	
 	public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	public static final String URL = "jdbc:mysql://localhost:3306/gestion_reclamation";
+	public static final String URL = "jdbc:mysql://localhost:3306/claims_management";
 	public static final String USER = "root";
 	public static final String PASSWORD = "";	
 	public static final String JDBC_IS_NULL = "Driver JDBC non trouv� : ";
