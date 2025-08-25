@@ -1,25 +1,24 @@
 package com.kozao.models;
 
+import java.util.List;
+
 public class Resource {
 	
 		private int idResource;
 		private String resourceName;
 		private String resourceDescription;
-		private Category cat;
-		
+		private List<Claim> claims;
 		
 		public Resource() {
 			super();
 		}
 
-		public Resource(String resource, String resourceDescription, Category category) {
+		public Resource(String resource, String resourceDescription, List<Claim> claims) {
 			super();
 			this.resourceName = resource;
 			this.resourceDescription = resourceDescription;
-			this.cat = category;
+			this.claims = claims;
 		}
-
-	
 
 		public int getIdResource() {
 			return idResource;
@@ -33,16 +32,8 @@ public class Resource {
 			return resourceName;
 		}
 
-		public void setResourceName(String resource) {
-			this.resourceName = resource;
-		}
-
-		public Category getCat() {
-			return cat;
-		}
-
-		public void setCat(Category category) {
-			this.cat = category;
+		public void setResourceName(String resourceName) {
+			this.resourceName = resourceName;
 		}
 
 		public String getResourceDescription() {
@@ -52,7 +43,18 @@ public class Resource {
 		public void setResourceDescription(String resourceDescription) {
 			this.resourceDescription = resourceDescription;
 		}
-		
+
+		public List<Claim> getClaims() {
+			return claims;
+		}
+
+		public void setClaims(List<Claim> claims) {
+			this.claims = claims;
+		}
+
+	
+
+
 		
 		
 		
