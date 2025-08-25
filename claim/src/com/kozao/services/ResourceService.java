@@ -14,11 +14,11 @@ public interface ResourceService {
 	
     int updateResource(Resource res) ;
 	
-    int deleteResource(int id) ;
+    int deleteResource(int resourceId) ;
 	
-	Resource findResourceById(int id);
+	Resource findResourceById(int resourceId);
 	
-	Resource findResourceByName(String name);
+	Resource findResourceByName(String resourceName);
 
 	List<Resource> findAllResources() ;
 	
