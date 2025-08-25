@@ -28,8 +28,6 @@ public interface UserService {
 
 	User findUserByFirstName(String userFirstName);
 
-	List<User> findAllUser();
-	
-	
+	List<User> findAllUser();	
 
 }
