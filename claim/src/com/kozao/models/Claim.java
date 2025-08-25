@@ -10,15 +10,12 @@ public class Claim {
 	private boolean statusClaim;
 	
 	private User user;
-	private Category category;
+	private Resource resource_id;
+
+	public Claim() {}
 	
-
-	public Claim() {
-		super();
-	}
-
-	public Claim(String reason, String submissionDate, String confirmationDate, String priority,
-			boolean statusClaim, User user, Category category) {
+	public Claim(String reason, String submissionDate, String confirmationDate, String priority, boolean statusClaim,
+			User user, Resource resource_id) {
 		super();
 		this.reason = reason;
 		this.submissionDate = submissionDate;
@@ -26,9 +23,7 @@ public class Claim {
 		this.priority = priority;
 		this.statusClaim = statusClaim;
 		this.user = user;
-		this.category = category;
-		
-		
+		this.resource_id = resource_id;
 	}
 	
 	public int getIdClaim() {
@@ -61,7 +56,7 @@ public class Claim {
 	public void setPriority(String priority) {
 		this.priority = priority;
 	}
-	public boolean getStatusClaim() {
+	public boolean isStatusClaim() {
 		return statusClaim;
 	}
 	public void setStatusClaim(boolean statusClaim) {
@@ -73,12 +68,14 @@ public class Claim {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public Category getCategory() {
-		return category;
+	public Resource getResource_id() {
+		return resource_id;
 	}
-	public void setCategory(Category category) {
-		this.category = category;
+	public void setResource_id(Resource resource_id) {
+		this.resource_id = resource_id;
 	}
+	
+
 	
 	
 
