@@ -1,5 +1,7 @@
 package com.kozao.models;
 
+import com.kozao.models.enumations.StatusClaim;
+
 public class Claim {
 	
 	private int idClaim;
