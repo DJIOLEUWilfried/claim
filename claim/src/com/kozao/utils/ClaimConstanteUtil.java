@@ -58,8 +58,10 @@ public class ClaimConstanteUtil {
 	public static final String QUERY_CREATE_RESOURCE = "INSERT INTO resource (resource_name, resource_description) VALUES (?, ?)";
 	public static final String QUERY_UPDATE_RESOURCE = "UPDATE resource SET resource_name=?, description_resource=?, WHERE resource_id=?" ;
 	public static final String QUERY_DELETE_RESOURCE = "DELETE resource FROM resource_id=?" ;  
-	public static final String QUERY_FIND_RESOURCE_BY_ID = "SELECT resource_id, resource_name, resource_description, category_id FROM resource WHERE resource_id=?";
-	
+	public static final String QUERY_FIND_RESOURCE_BY_ID = "SELECT resource_id, resource_name, resource_description FROM resource WHERE resource_id=?";
+	public static final String QUERY_FIND_RESOURCE_BY_NAME = "SELECT resource_id, resource_name, resource_description FROM resource WHERE resource_name=?";
+	public static final String QUERY_FIND_ALL_RESOURCE = "SELECT resource_id, resource_name, resource_description FROM resource ";
+
 	
 	
 	
