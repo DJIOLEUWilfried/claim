@@ -8,12 +8,7 @@ import com.kozao.controllers.UserController;
 
 public class UserTest {
 
-//	public static void main(String[] args) {
-//		// TODO Auto-generated method stub
-//
-//	}
-
-	UserController userController;
+	public UserController userController;
 
 	@BeforeEach
 	void setUp() {
