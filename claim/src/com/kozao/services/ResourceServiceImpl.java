@@ -84,7 +84,7 @@ public class ResourceServiceImpl implements ResourceService {
 		try {
 
 			Connection con = ConnexionDB.getConnection();
-			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_FIND_USER_BY_ID);
+			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_FIND_RESOURCE_BY_ID);
 
 			pre.setInt(1, id);
 
