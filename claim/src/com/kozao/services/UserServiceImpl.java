@@ -210,7 +210,6 @@ public class UserServiceImpl implements UserService {
 		} catch (SQLException e) {
 
 			logger.warning(String.format("\n Error : %s", e));
-
 		}
 
 		return null;
