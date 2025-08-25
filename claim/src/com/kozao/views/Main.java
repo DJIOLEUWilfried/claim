@@ -2,9 +2,12 @@ package com.kozao.views;
 
 import java.util.Scanner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.kozao.controllers.UserController;
+import com.kozao.models.enumations.StatusClaim;
 import com.kozao.utils.ClaimControlUserUtil;
 
 
@@ -61,13 +64,26 @@ public class Main {
 //            System.out.println(" Incorrect.");
 //        }
 		
-        // System.out.println("\n Enumeration : " + StatusClaim.PENDING);
-
-        
-        
-		
-		
-
 	}
+		private static final Logger logger = LogManager.getLogger(Main.class);
+
+	    public static void maMethode(String param) {
+	        logger.info("Début de la méthode maMethode avec paramètre: {}", param);
+
+	        try {
+	            int result = 10 / Integer.parseInt(param);
+	            logger.debug("Résultat du calcul = {}", result);
+	        } catch (Exception e) {
+	            logger.error("Erreur dans maMethode avec paramètre: {}", param, e);
+	        }
+
+	        logger.error("Fin de la méthode maMethode");
+	    }
+        
+        
+		
+		
+
+	
 
 }

@@ -1,5 +1,8 @@
 package com.kozao.services;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,16 +10,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale.Category;
-import java.util.logging.Logger;
+
 
 import com.kozao.models.Resource;
-import com.kozao.models.User;
 import com.kozao.utils.ClaimConstanteUtil;
 
 public class ResourceServiceImpl implements ResourceService {
 
-	public static Logger logger = Logger.getLogger(UserServiceImpl.class.getName());
+	private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
 
 	@Override
 	public int addResource(Resource res) {
@@ -33,7 +34,7 @@ public class ResourceServiceImpl implements ResourceService {
 			r = pre.executeUpdate();
 
 		} catch (SQLException e) {
-			logger.warning(String.format("\n Error : %s", e));
+			logger.error(String.format("\n Error : %s", e));
 		}
 
 		return r;
@@ -54,7 +55,7 @@ public class ResourceServiceImpl implements ResourceService {
 			r = pre.executeUpdate();
 
 		} catch (SQLException e) {
-			logger.warning(String.format("\n Error : %s", e));
+			logger.error(String.format("\n Error : %s", e));
 		}
 
 		return r;
@@ -75,7 +76,7 @@ public class ResourceServiceImpl implements ResourceService {
 
 		} catch (SQLException e) {
 
-			logger.warning(String.format("\n Error : %s", e));
+			logger.error(String.format("\n Error : %s", e));
 		}
 
 		return 0;
@@ -102,8 +103,7 @@ public class ResourceServiceImpl implements ResourceService {
 			}
 
 		} catch (SQLException e) {
-
-			logger.warning(String.format("\n Error : %s", e));
+			logger.error(String.format("\n Error : %s", e));
 		}
 
 		return null;
@@ -130,8 +130,7 @@ public class ResourceServiceImpl implements ResourceService {
 			}
 
 		} catch (SQLException e) {
-
-			logger.warning(String.format("\n Error : %s", e));
+			logger.error(String.format("\n Error : %s", e));
 		}
 
 		return null;
@@ -160,7 +159,7 @@ public class ResourceServiceImpl implements ResourceService {
 			return resource;
 
 		} catch (SQLException e) {
-			logger.warning(String.format("\n Error : %s", e));
+			logger.error(String.format("\n Error : %s", e));
 		}
 
 		return resource;
