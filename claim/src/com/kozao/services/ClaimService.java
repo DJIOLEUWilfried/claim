@@ -11,7 +11,7 @@ public interface ClaimService {
 
 	int addReclamation(Claim claim, int userId, int resourceId);
 
-	int updateReclamation(Claim claim, User user, Resource resource);
+	int updateReclamation(Claim claim, int userId, int resourceId);
 
 	int deleteReclamation(int claimId);
 
