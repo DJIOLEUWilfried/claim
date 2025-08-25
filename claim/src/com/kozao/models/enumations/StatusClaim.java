@@ -1,4 +1,4 @@
-package com.kozao.models.enumerations;
+package com.kozao.models.enumations;
 
 
 public enum StatusClaim {
