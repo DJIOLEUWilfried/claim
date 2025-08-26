@@ -103,24 +103,21 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int updatePassWord(String oldPassword, String newPassword) {
+	public int updatePassWord(String name, String newPassword) {
 		int r = 0;
-		if (!findPassWord(oldPassword)) {
-			return 1;
-		}
 
 		try {
 
 			Connection con = ConnexionDB.getConnection();
 			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_UPDATE_PASSWORD);
 
-			pre.setString(1, oldPassword);
-			pre.setString(2, newPassword);
+			pre.setString(1, newPassword);
+			pre.setString(2, name);
 
 			r = pre.executeUpdate();
 
 		} catch (SQLException e) {
-			logger.error(String.format("\n Error : %s", e.getMessage()));
+			logger.error(String.format("\n updatePassWord(). Error : %s", e.getMessage()));
 		}
 		
 		return r;
@@ -246,7 +243,6 @@ public class UserServiceImpl implements UserService {
 		}
 
 		return null;
-
 	}
 
 	@Override
@@ -270,7 +266,8 @@ public class UserServiceImpl implements UserService {
 				user.setUserEmail(rs.getString("user_email"));
 				user.setUserRole(rs.getString("user_role"));
 				user.setUserStatus(rs.getBoolean("user_status"));
-
+                user.setPassWord(rs.getString("password"));
+				
 				return user;
 			}
 
