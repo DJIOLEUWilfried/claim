@@ -104,11 +104,28 @@ public class UserController {
 
 		msgUserController = (r > 0) ? ClaimConstanteUtil.MSG_UPDATE_PASSWORD :ClaimConstanteUtil.MSG_FAILED_UPDATE_PASSWORD;
 
-//		msgUserController = (r < 0) ? ClaimConstanteUtil.MSG_FAILED_UPDATE_PASSWORD :
-//				            (r == 1) ? ClaimConstanteUtil.MSG_PASSWORD_INVALID : ClaimConstanteUtil.MSG_UPDATE_PASSWORD;
-
 	}
 
+
+	public void disableUserController(int id) {
+		if (id < 1) {
+			msgUserController = ClaimConstanteUtil.MSG_VALIDE_ID;
+			return ;
+		}
+		
+		int r = userService.disableUser(id);
+		msgUserController = (r > 0) ? ClaimConstanteUtil.MSG_DISABLE_USER_STATUS
+				          : ClaimConstanteUtil.MSG_FAILED_DISABLE_USER_STATUS; 
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public User findUserByIdController(int id) {
 		if (id < 1) {
 			msgUserController = ClaimConstanteUtil.MSG_VALIDE_ID;
@@ -189,17 +206,6 @@ public class UserController {
 		return user;   
 	}
 	
-	public void disableUserController(int id) {
-		if (id < 1) {
-			msgUserController = ClaimConstanteUtil.MSG_VALIDE_ID;
-			return ;
-		}
-		
-		int r = userService.disableUser(id);
-
-		msgUserController = (r > 0) ? ClaimConstanteUtil.MSG_DISABLE_USER_STATUS
-				          : ClaimConstanteUtil.MSG_FAILED_DISABLE_USER_STATUS; 
-	}
 	
 	public void enableUserController(int id) {
 		if (id < 1) {
