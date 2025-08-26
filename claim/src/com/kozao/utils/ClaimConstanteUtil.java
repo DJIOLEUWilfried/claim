@@ -14,12 +14,12 @@ public class ClaimConstanteUtil {
 	public static final String QUERY_CREATE_USER = "INSERT INTO users (user_name, user_first_name, user_email, user_role, user_status, password) VALUES (?, ?, ?, ?, ?, ?)";
 	public static final String QUERY_UPDATE_USER = "UPDATE users SET user_name=?, user_first_name=?, user_email=?, user_role=?, password=? WHERE id_user=?";
 	public static final String QUERY_UPDATE_USER_PROFIL = "UPDATE users SET user_name=?, user_first_name=?, user_email=? WHERE id_user=?";
-	public static final String QUERY_UPDATE_PASSWORD = "UPDATE users SET password=? WHERE password=?";
+	public static final String QUERY_UPDATE_PASSWORD = "UPDATE users SET password=? WHERE user_name=?";
 	public static final String QUERY_FIND_PASSWORD = "SELECT password FROM users WHERE password=?";
 	public static final String QUERY_STAUT_USER = "UPDATE users SET user_status=? WHERE id_user=?";	
 	public static final String QUERY_DELETE_USER = "DELETE FROM users WHERE id_user=?";
 	public static final String QUERY_FIND_USER_BY_ID = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status FROM users WHERE id_user=?";
-	public static final String QUERY_FIND_USER_BY_NAME = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status FROM users WHERE user_name=?";
+	public static final String QUERY_FIND_USER_BY_NAME = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status, password FROM users WHERE user_name=?";
 	public static final String QUERY_FIND_USER_BY_FIRST_NAME = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status FROM users WHERE user_first_name=?";
 	public static final String QUERY_FIND_ALL_USER = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status FROM users ";
 	public static final String QUERY_LOGIN_USER = "SELECT user_name, user_role FROM users WHERE user_email=? AND password=?" ;
@@ -53,6 +53,7 @@ public class ClaimConstanteUtil {
 	public static final String MSG_INVALID_ROLE = "Please enter a valid role !!";
 	public static final String MSG_DISABLE_STATUS = "Unable to log in, you have been disabled by the administrator. Please contact them !!" ;
 	public static final String MSG_TEST_FAILED = "Test failed !!" ;
+
 	public static final String MSG_ACCOUNT_ALREADY_EXISTS = "An account already exists with this email address !!";
 	
 	// Resource   
