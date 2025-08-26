@@ -105,9 +105,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int updatePassWord(String oldPassword, String newPassword) {
 		int r = 0;
-
 		if (!findPassWord(oldPassword)) {
-			return -1;
+			return 1;
 		}
 
 		try {
@@ -121,21 +120,20 @@ public class UserServiceImpl implements UserService {
 			r = pre.executeUpdate();
 
 		} catch (SQLException e) {
-
 			logger.error(String.format("\n Error : %s", e.getMessage()));
 		}
-
+		
 		return r;
 	}
 
 	@Override
-	public boolean findPassWord(String passWord) {
+	public boolean findPassWord(String oldPassword) {
 
 		try {
 			Connection con = ConnexionDB.getConnection();
 			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_FIND_PASSWORD);
 
-			pre.setString(1, passWord);
+			pre.setString(1, oldPassword);
 
 			int rst = pre.executeUpdate();
 
@@ -144,10 +142,8 @@ public class UserServiceImpl implements UserService {
 			}
 
 		} catch (SQLException e) {
-
 			logger.error(String.format("\n Error : %s", e));
 		}
-
 		return false;
 	}
 
