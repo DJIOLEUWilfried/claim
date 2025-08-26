@@ -11,7 +11,6 @@ import org.junit.Test;
 //import static org.junit.jupiter.api.Assertions.*;
 
 import com.kozao.controllers.UserController;
-import com.kozao.models.User;
 import com.kozao.utils.ClaimConstanteUtil;
 
 
@@ -24,7 +23,7 @@ public class UserTest {
 		
 		userController.addUserController("DJIOLEU", "Wilfried", "djioleuwilfried@gmail.com", "Admin");
                 		
-        assertEquals("Test echoué", ClaimConstanteUtil.MSG_CREATE_USER, UserController.msgUserController);
+        assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_CREATE_USER, UserController.msgUserController);
 	}
 
 	
