@@ -24,7 +24,6 @@ public class UserServiceImpl implements UserService {
 	public User login(String user_email) {
 
 		try {
-
 			Connection con = ConnexionDB.getConnection();
 
 			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_FIND_EMAIL);
@@ -108,7 +107,7 @@ public class UserServiceImpl implements UserService {
 		int r = 0;
 
 		if (!findPassWord(oldPassword)) {
-			return 1;
+			return -1;
 		}
 
 		try {
