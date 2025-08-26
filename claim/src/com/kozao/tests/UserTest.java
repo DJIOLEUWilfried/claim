@@ -1,14 +1,8 @@
 package com.kozao.tests;
 
-import static org.junit.Assert.assertEquals;
-
-// import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Test;
-//import org.junit.jupiter.api.BeforeEach;
-
-//import org.junit.jupiter.api.*;
-//import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
 import com.kozao.controllers.UserController;
 import com.kozao.utils.ClaimConstanteUtil;
@@ -21,11 +15,34 @@ public class UserTest {
 	@Test
     public void testCreateUser() {  
 		
-		userController.addUserController("DJIOLEU", "Wilfried", "djioleuwilfried@gmail.com", "Admin");
+		userController.addUserController("KAMGA22", "Souleman", "kamga22souleman@gmail.com", "Admin");
                 		
         assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_CREATE_USER, UserController.msgUserController);
 	}
+	
+	@Test
+	public void testupdateUserProfilController() {
+		
+		userController.updateUserProfilController("DJAMEN", "Jores", "djamenjores@gmail.com", 13);
+        
+        assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_UPDATE_PROFIL, UserController.msgUserController);
+	}
 
+	@Test
+	public void updatePassWord(String oldPassword, String newPassword) {
+		// Claim545
+
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
