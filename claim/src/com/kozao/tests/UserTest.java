@@ -2,8 +2,12 @@ package com.kozao.tests;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import java.util.List;
 
 import com.kozao.controllers.UserController;
+import com.kozao.models.User;
 import com.kozao.utils.ClaimConstanteUtil;
 
 public class UserTest {
@@ -19,7 +23,7 @@ public class UserTest {
 //		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_CREATE_USER,
 //				UserController.msgUserController);
 //	}
-	
+//	
 	
 //	@Test
 //	public void testupdateUserProfilController() {
@@ -61,18 +65,58 @@ public class UserTest {
 //				UserController.msgUserController);
 //	}	
 	
+//	@Test  
+//	public void testloginController() { // "L'objet ne doit pas être null"
+//
+//		User user = userController.loginController("djioleuwilfried@gmail.com", "Claim25");
+//		
+//		assertNotNull(ClaimConstanteUtil.MSG_USER_NOT_NULL, user);
+//	}	
+	
+	
+//	@Test  
+//	public void testfindUserByIdController() { // "L'objet ne doit pas être null"
+//
+//		User user = userController.findUserByIdController(17);
+//		
+//		assertNotNull(ClaimConstanteUtil.MSG_USER_NOT_NULL, user);
+//	}
+	
+//	@Test  
+//	public void testfindUserByNameController() { // "L'objet ne doit pas être null"
+//
+//		User user = userController.findUserByNameController("KAMGA2");
+//		
+//		assertNotNull(ClaimConstanteUtil.MSG_USER_NOT_NULL, user);
+//	}
+	
+//	@Test  
+//	public void testfindUserByFirstNameController() { // "L'objet ne doit pas être null"
+//
+//		User user = userController.findUserByFirstNameController("Cyria");
+//		
+//		assertNotNull(ClaimConstanteUtil.MSG_USER_NOT_NULL, user);
+//	}
+	
+	
+//	@Test  
+//	public void testfindAllUserController() { // "L'objet ne doit pas être null"
+//
+//		List<User> user = userController.findAllUserController();
+//		
+//		assertNotNull(ClaimConstanteUtil.MSG_USER_NOT_NULL, user);
+//	}
+	
+
 	@Test  
-	public void testenableUserController() {
+	public void testdeleteUserController() {
 
-		userController.enableUserController(18);
+		userController.deleteUserController(1);
 		
-		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_ENABLE_USER_STATUS,
+		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.QUERY_USER_DELETE,
 				UserController.msgUserController);
-	}	
+	}
 	
 	
 	
-	
-	
-
 }
