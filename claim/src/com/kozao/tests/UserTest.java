@@ -74,21 +74,21 @@ public class UserTest {
 //	}	
 	
 	
-//	@Test  
-//	public void testfindUserByIdController() { // "L'objet ne doit pas être null"
-//
-//		User user = userController.findUserByIdController(17);
-//		
-//		assertNotNull(ClaimConstanteUtil.MSG_USER_NOT_NULL, user);
-//	}
+	@Test  
+	public void testfindUserByIdController() { // "L'objet ne doit pas être null"
+
+		User user = userController.findUserByIdController(17);
+		
+		assertNotNull(ClaimConstanteUtil.MSG_USER_NOT_NULL, user);
+	}
 	
-//	@Test  
-//	public void testfindUserByNameController() { // "L'objet ne doit pas être null"
-//
-//		User user = userController.findUserByNameController("KAMGA2");
-//		
-//		assertNotNull(ClaimConstanteUtil.MSG_USER_NOT_NULL, user);
-//	}
+	@Test  
+	public void testfindUserByNameController() { // "L'objet ne doit pas être null"
+
+		User user = userController.findUserByNameController("KAMGA2");
+		
+		assertNotNull(ClaimConstanteUtil.MSG_USER_NOT_NULL, user);
+	}
 	
 //	@Test  
 //	public void testfindUserByFirstNameController() { // "L'objet ne doit pas être null"
