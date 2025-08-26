@@ -52,6 +52,7 @@ public class ClaimConstanteUtil {
 	public static final String MSG_FAILED_SEND_PASSWORD = "Failed to send password via email address !!";
 	public static final String MSG_INVALID_ROLE = "Please enter a valid role !!";
 	public static final String MSG_DISABLE_STATUS = "Unable to log in, you have been disabled by the administrator. Please contact them !!" ;
+	public static final String MSG_TEST_FAILED = "Test failed !!" ;
 
 	
 	// Resource   
