@@ -53,7 +53,7 @@ public class ClaimConstanteUtil {
 	public static final String MSG_INVALID_ROLE = "Please enter a valid role !!";
 	public static final String MSG_DISABLE_STATUS = "Unable to log in, you have been disabled by the administrator. Please contact them !!" ;
 	public static final String MSG_TEST_FAILED = "Test failed !!" ;
-
+	public static final String MSG_ACCOUNT_ALREADY_EXISTS = "An account already exists with this email address !!";
 	
 	// Resource   
 	public static final String QUERY_CREATE_RESOURCE = "INSERT INTO resource (resource_name, resource_description) VALUES (?, ?)";
