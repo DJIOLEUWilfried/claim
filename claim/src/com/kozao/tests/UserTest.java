@@ -42,17 +42,33 @@ public class UserTest {
 //	}
 	
 	
+//	@Test  
+//	public void testdisableUserController() {
+//
+//		userController.disableUserController(18);
+//		
+//		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_DISABLE_USER_STATUS,
+//				UserController.msgUserController);
+//	}
+	
+	
+//	@Test  
+//	public void testenableUserController() {
+//
+//		userController.enableUserController(18);
+//		
+//		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_ENABLE_USER_STATUS,
+//				UserController.msgUserController);
+//	}	
+	
 	@Test  
-	public void testdisableUserController() {
+	public void testenableUserController() {
 
-		userController.disableUserController(18);
+		userController.enableUserController(18);
 		
-		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_DISABLE_USER_STATUS,
+		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_ENABLE_USER_STATUS,
 				UserController.msgUserController);
-	}
-	
-	
-	
+	}	
 	
 	
 	
