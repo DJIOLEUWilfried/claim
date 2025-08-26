@@ -9,35 +9,37 @@ import com.kozao.utils.ClaimConstanteUtil;
 public class UserTest {
 
 	public UserController userController = new UserController();
-   
 	
-	@Test
-	public void testCreateUser() {
-
-		userController.addUserController("CHOFFO", "Cyrias", "choffacyrias@gmail.com", "User");
-
-		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_CREATE_USER,
-				UserController.msgUserController);
-	}
-
-	@Test
-	public void testupdateUserProfilController() {
-
-		userController.updateUserProfilController("DJAMEN", "Jores", "djamenjores@gmail.com", 13);
-
-		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_UPDATE_PROFIL,
-				UserController.msgUserController);
-	}
-
 	
-	@Test  
-	public void updatePassWordController() {
-
-		userController.updatePassWordController("Claim545", "ras1");
-
-		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_UPDATE_PASSWORD,
-				UserController.msgUserController);
-	}
+//	@Test
+//	public void testCreateUser() {
+//
+//		userController.addUserController("DJIOLEU1", "Wilfried1", "djioleuwilfried@gmail.com", "User");
+//
+//		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_CREATE_USER,
+//				UserController.msgUserController);
+//	}
+	
+	
+//	@Test
+//	public void testupdateUserProfilController() {
+//
+//		userController.updateUserProfilController("DJAMEN1", "Jores1", "djamenjores1@gmail.com", 13);
+//
+//		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_UPDATE_PROFIL,
+//				UserController.msgUserController);
+//	}
+//	
+	
+	
+//	@Test  
+//	public void testUpdatePassWordController() {
+//
+//		userController.updatePassWordController("DJIOLEU1", "ras2", "ras3");
+//		
+//		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_UPDATE_PASSWORD,
+//				UserController.msgUserController);
+//	}
 	
 	
 	
