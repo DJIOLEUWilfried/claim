@@ -10,7 +10,7 @@ public interface UserService {
 
 	int updateUserProfil(User user);
 
-	int updatePassWord(String oldPassword, String newPassword);
+	int updatePassWord(String name, String newPassword);
 
 	boolean findPassWord(String passWord);
 
