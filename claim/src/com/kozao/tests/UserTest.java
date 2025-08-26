@@ -42,6 +42,14 @@ public class UserTest {
 //	}
 	
 	
+	@Test  
+	public void testdisableUserController() {
+
+		userController.disableUserController(18);
+		
+		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_DISABLE_USER_STATUS,
+				UserController.msgUserController);
+	}
 	
 	
 	
