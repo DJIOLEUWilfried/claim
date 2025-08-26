@@ -75,7 +75,7 @@ public class UserTest {
 	
 	
 	@Test  
-	public void testfindUserByIdController() { // "L'objet ne doit pas être null"
+	public void testfindUserByIdController() { 
 
 		User user = userController.findUserByIdController(17);
 		
@@ -83,7 +83,7 @@ public class UserTest {
 	}
 	
 	@Test  
-	public void testfindUserByNameController() { // "L'objet ne doit pas être null"
+	public void testfindUserByNameController() { 
 
 		User user = userController.findUserByNameController("KAMGA2");
 		
