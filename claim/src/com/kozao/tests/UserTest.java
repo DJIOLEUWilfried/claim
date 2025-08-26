@@ -14,7 +14,7 @@ public class UserTest {
 	@Test
 	public void testCreateUser() {
 
-		userController.addUserController("KAMGA12", "Souleman", "kamga12souleman@gmail.com", "User");
+		userController.addUserController("CHOFFO", "Cyrias", "choffacyrias@gmail.com", "User");
 
 		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_CREATE_USER,
 				UserController.msgUserController);
