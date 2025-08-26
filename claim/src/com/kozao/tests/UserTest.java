@@ -99,13 +99,13 @@ public class UserTest {
 	}
 	
 	
-//	@Test  
-//	public void testfindAllUserController() { // "L'objet ne doit pas être null"
-//
-//		List<User> user = userController.findAllUserController();
-//		
-//		assertNotNull(ClaimConstanteUtil.MSG_USER_NOT_NULL, user);
-//	}
+	@Test  
+	public void testfindAllUserController() { 
+
+		List<User> user = userController.findAllUserController();
+		
+		assertNotNull(ClaimConstanteUtil.MSG_USER_NOT_NULL, user);
+	}
 	
 
 	@Test  
