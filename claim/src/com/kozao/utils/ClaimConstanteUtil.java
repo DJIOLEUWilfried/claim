@@ -23,7 +23,7 @@ public class ClaimConstanteUtil {
 	public static final String QUERY_FIND_USER_BY_FIRST_NAME = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status FROM users WHERE user_first_name=?";
 	public static final String QUERY_FIND_ALL_USER = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status FROM users ";
 	public static final String QUERY_LOGIN_USER = "SELECT user_name, user_role FROM users WHERE user_email=? AND password=?" ;
-	public static final String QUERY_FIND_EMAIL = "SELECT user_first_name, user_role, user_status, password FROM users WHERE user_email=?" ;
+	public static final String QUERY_FIND_EMAIL = "SELECT user_name, user_role, user_status, password FROM users WHERE user_email=?" ;
 
 	
 	public static final String CHAMP_IS_EMPTY = "\n Please fill in all fields !!" ;
@@ -55,6 +55,8 @@ public class ClaimConstanteUtil {
 	public static final String MSG_TEST_FAILED = "Test failed !!" ;
 
 	public static final String MSG_ACCOUNT_ALREADY_EXISTS = "An account already exists with this email address !!";
+	public static final String MSG_USER_NOT_NULL = "The user object must not be null !!";
+	
 	
 	// Resource   
 	public static final String QUERY_CREATE_RESOURCE = "INSERT INTO resource (resource_name, resource_description) VALUES (?, ?)";
