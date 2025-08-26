@@ -14,6 +14,7 @@ public class UserController {
 	UserService userService = new UserServiceImpl();
 	
 	User user = new User();
+	
 	public static String msgUserController;
 
 	public void addUserController(String name, String firstName, String email, String role) {
@@ -78,17 +79,33 @@ public class UserController {
 
 	}
 
-	public void updatePassWordController(String oldPassword, String newPassword) {
-		if (ClaimControlUserUtil.checkAllFields(oldPassword, newPassword)) {
+	public void updatePassWordController(String name, String oldPassword, String newPassword) {
+		if (ClaimControlUserUtil.checkAllFields(name, oldPassword, newPassword)) {
 
 			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;
 			return;
+		}	
+		
+		User user = findUserByNameController(name.toUpperCase());
+		if ( user == null ) {
+			msgUserController = ClaimConstanteUtil.MSG_FAILLED_FIND_USER;
+			return ;
 		}
+		
+		String pass = user.getPassWord();
+		
+		if ( !ClaimControlUserUtil.verifyPassword(oldPassword, pass)) {
+			
+			msgUserController = ClaimConstanteUtil.MSG_PASSWORD_INVALID;  
+		    return ;
+		}
+		
+		int r = userService.updatePassWord( name, ClaimControlUserUtil.cryptPassWord(newPassword) );
 
-		int r = userService.updatePassWord(oldPassword, newPassword);
+		msgUserController = (r > 0) ? ClaimConstanteUtil.MSG_UPDATE_PASSWORD :ClaimConstanteUtil.MSG_FAILED_UPDATE_PASSWORD;
 
-		msgUserController = (r < 0) ? ClaimConstanteUtil.MSG_FAILED_UPDATE_PASSWORD :
-				            (r == 1) ? ClaimConstanteUtil.MSG_PASSWORD_INVALID : ClaimConstanteUtil.MSG_UPDATE_PASSWORD;
+//		msgUserController = (r < 0) ? ClaimConstanteUtil.MSG_FAILED_UPDATE_PASSWORD :
+//				            (r == 1) ? ClaimConstanteUtil.MSG_PASSWORD_INVALID : ClaimConstanteUtil.MSG_UPDATE_PASSWORD;
 
 	}
 
@@ -113,8 +130,8 @@ public class UserController {
 			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;
 			return null;
 		}
+		
 		User user = userService.findUserByName(name);
-
 		if (user == null) {
 			msgUserController = ClaimConstanteUtil.MSG_FAILLED_FIND_USER;
 			return null;
