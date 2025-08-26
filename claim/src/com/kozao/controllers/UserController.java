@@ -88,7 +88,7 @@ public class UserController {
 		int r = userService.updatePassWord(oldPassword, newPassword);
 
 		msgUserController = (r < 0) ? ClaimConstanteUtil.MSG_FAILED_UPDATE_PASSWORD :
-				            (r == -1) ? ClaimConstanteUtil.MSG_PASSWORD_INVALID : ClaimConstanteUtil.MSG_UPDATE_PASSWORD;
+				            (r == 1) ? ClaimConstanteUtil.MSG_PASSWORD_INVALID : ClaimConstanteUtil.MSG_UPDATE_PASSWORD;
 
 	}
 
