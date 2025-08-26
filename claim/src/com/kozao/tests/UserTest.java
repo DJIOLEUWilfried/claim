@@ -90,13 +90,13 @@ public class UserTest {
 		assertNotNull(ClaimConstanteUtil.MSG_USER_NOT_NULL, user);
 	}
 	
-//	@Test  
-//	public void testfindUserByFirstNameController() { // "L'objet ne doit pas être null"
-//
-//		User user = userController.findUserByFirstNameController("Cyria");
-//		
-//		assertNotNull(ClaimConstanteUtil.MSG_USER_NOT_NULL, user);
-//	}
+	@Test  
+	public void testfindUserByFirstNameController() { 
+
+		User user = userController.findUserByFirstNameController("Cyria");
+		
+		assertNotNull(ClaimConstanteUtil.MSG_USER_NOT_NULL, user);
+	}
 	
 	
 //	@Test  
