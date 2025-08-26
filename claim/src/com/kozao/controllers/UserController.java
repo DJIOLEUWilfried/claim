@@ -49,9 +49,9 @@ public class UserController {
 		user.setPassWord(password);
 
 		int r = userService.addUser(user);
-
-		msgUserController = (r > 0) ? ClaimConstanteUtil.MSG_CREATE_USER : ClaimConstanteUtil.MSG_FAILED_CREATE_USER;
-       	
+		
+		msgUserController = (r > 0) ? ClaimConstanteUtil.MSG_CREATE_USER : 
+			                (r == -1) ? ClaimConstanteUtil.MSG_ACCOUNT_ALREADY_EXISTS : ClaimConstanteUtil.MSG_FAILED_CREATE_USER;		
 	}    
 
 	public void updateUserProfilController(String name, String firstName, String email, int id) {
