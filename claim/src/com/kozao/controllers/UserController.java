@@ -2,6 +2,8 @@ package com.kozao.controllers;
 
 import java.util.List;
 
+import javax.mail.internet.InternetAddress;
+
 import com.kozao.models.User;
 import com.kozao.services.UserService;
 import com.kozao.services.UserServiceImpl;
@@ -31,12 +33,23 @@ public class UserController {
 		}
 
 		
-		if (!ClaimControlUserUtil.emailValid(email)) {
-			msgUserController = ClaimConstanteUtil.MSG_INVALID_ROLE;
-			return;
+//		if (ClaimControlUserUtil.emailValid(email) == false) {
+//			msgUserController = ClaimConstanteUtil.MSG_INVALID_ROLE;
+//			return;
+//		}
+		
+		try {
+			InternetAddress emailAddr = new InternetAddress(email);
+			emailAddr.validate();
+
+			msgUserController = ClaimConstanteUtil.MSG_CREATE_USER;
+
+		} catch (Exception e) {
+			msgUserController = ClaimConstanteUtil.MSG_INVALID_EMAIL;
+
 		}
 		
-		
+		/*
 		String password = ClaimSendPasswordUtil.SendPassword(email, name);
 		if (password.isEmpty() || password == null) {
 			msgUserController = ClaimConstanteUtil.MSG_FAILED_SEND_PASSWORD;
@@ -52,7 +65,7 @@ public class UserController {
 		int r = userService.addUser(user);
 
 		msgUserController = (r > 0) ? ClaimConstanteUtil.MSG_CREATE_USER : ClaimConstanteUtil.MSG_FAILED_CREATE_USER;
-        
+        */
 	}    
 
 	public void updateUserProfilController(String name, String firstName, String email, int id) {
