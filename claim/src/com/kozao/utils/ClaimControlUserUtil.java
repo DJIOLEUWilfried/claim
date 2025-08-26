@@ -1,5 +1,6 @@
 package com.kozao.utils;
 
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -36,7 +37,7 @@ public class ClaimControlUserUtil {
 
 			return true;
 
-		} catch (Exception e) {
+		} catch (AddressException  e) {
 			return false;
 		}
 	}
