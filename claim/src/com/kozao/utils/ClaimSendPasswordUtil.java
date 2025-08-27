@@ -27,7 +27,7 @@ public class ClaimSendPasswordUtil {
         final String motDePasseApp = "phuw pmkm cbui cpjs"; // Mot de passe d'application Gmail
 
         String destinataire = email;  
-        String sujet = "Mot de passe de votre compte";
+        String sujet = "Mot de passe de votre compte chez CLAIM";
         String contenu = String.format("\n Bonjour %s, votre mot de passe est : %s", nameUser.toUpperCase(), password);
 
         Properties props = new Properties();
@@ -45,8 +45,8 @@ public class ClaimSendPasswordUtil {
         try {
             Message message = new MimeMessage(session);
 
-            // Masquer l'adresse et afficher un nom personnalisé "CLAIM"
-            message.setFrom(new InternetAddress(expediteurEmail, "CLAIM")); // Nom affiché chez le destinataire
+            // Masquer l'adresse et afficher un nom personnalisé "CLAIM" chez le destinataire
+            message.setFrom(new InternetAddress(expediteurEmail, "CLAIM")); 
 
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destinataire));
             message.setSubject(sujet);
