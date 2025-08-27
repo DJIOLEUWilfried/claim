@@ -17,11 +17,11 @@ public class ClaimControlUserUtil {
 		}
 		return false;
 	}
+	
+	public static boolean controlUpdateUserProfil(String name, String firstName, String email, int id) {
 
-	public static boolean controlAddUser(String name, String firstName, String email, String role) {
-
-		if (name.isEmpty() || firstName.isEmpty() || email.isEmpty() || role.isEmpty() ||
-		    name == null || firstName == null || email == null || role == null ) {
+		if (name.isEmpty() || firstName.isEmpty() || email.isEmpty() || id == 0 || name == null || firstName == null
+				|| email == null) {
 
 			return true;
 		}
@@ -46,17 +46,7 @@ public class ClaimControlUserUtil {
 
 		return BCrypt.hashpw(passWord, BCrypt.gensalt());
 	}
-
-	public static boolean controlUpdateUserProfil(String name, String firstName, String email, int id) {
-
-		if (name.isEmpty() || firstName.isEmpty() || email.isEmpty() || id == 0 || name == null || firstName == null
-				|| email == null) {
-
-			return true;
-		}
-
-		return false;
-	}
+	
 	
 	public static boolean verifyPassword( String Password, String hashPassword ) {
 		
@@ -64,14 +54,6 @@ public class ClaimControlUserUtil {
 		return false;
 	}
 
-	
-
-//	public static boolean controlUpdatePassWord(String oldPassword, String newPassword) {
-//		if (oldPassword.isEmpty() || newPassword.isEmpty() || oldPassword == null || newPassword == null) {
-//			return true;
-//		}
-//		return false;
-//	}
 
 	
 
