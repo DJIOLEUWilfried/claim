@@ -4,10 +4,14 @@ import org.junit.Test;
 
 import com.kozao.controllers.ResourceController;
 import com.kozao.controllers.UserController;
+import com.kozao.models.Resource;
+import com.kozao.models.User;
 import com.kozao.utils.ClaimConstanteUtil;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+
+
 
 
 public class ResourceTest {
@@ -33,7 +37,7 @@ public class ResourceTest {
 		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_UPDATE_RESOURCE,
 				ResourceController.msgResourceController);
 	}  
-    */
+    
 	
 	@Test
 	public void testdeleteResource() {
@@ -43,5 +47,21 @@ public class ResourceTest {
 		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.QUERY_RESOURCE_DELETE,
 				ResourceController.msgResourceController);
 	}
+	
+	*/
+	
+	@Test  
+	public void testfindUserById() { 
+
+		Resource resource = resourceController.findResourceByIdController(2);
+		
+		assertNotNull(ClaimConstanteUtil.MSG_RESOURCE_NOT_NULL, resource);
+	}
+	
+	
+	
+	
+	
+	
 	
 }
