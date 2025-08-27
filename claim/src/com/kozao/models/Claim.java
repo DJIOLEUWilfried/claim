@@ -11,21 +11,21 @@ public class Claim {
 	private String priority ;
 	private StatusClaim statusClaim;
 	
-	private User user;
-	private Resource resource_id;
+	private int userId;
+	private int resourceId;
 
 	public Claim() {}
 	
 	public Claim(String reason, String submissionDate, String confirmationDate, String priority, StatusClaim statusClaim,
-			User user, Resource resource_id) {
+			int userId, int resourceId) {
 		super();
 		this.reason = reason;
 		this.submissionDate = submissionDate;
 		this.confirmationDate = confirmationDate;
 		this.priority = priority;
 		this.statusClaim = statusClaim;
-		this.user = user;
-		this.resource_id = resource_id;
+		this.userId = userId;
+		this.resourceId = resourceId;
 	}
 	
 	public int getIdClaim() {
@@ -64,17 +64,17 @@ public class Claim {
 	public void setStatusClaim(StatusClaim statusClaim) {
 		this.statusClaim = statusClaim;
 	}
-	public User getUser() {
-		return user;
+	public int getUserId() {
+		return userId;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
-	public Resource getResource_id() {
-		return resource_id;
+	public int getResourceId() {
+		return resourceId;
 	}
-	public void setResource_id(Resource resource_id) {
-		this.resource_id = resource_id;
+	public void setResourceId(int resourceId) {
+		this.resourceId = resourceId;
 	}
 	
 
