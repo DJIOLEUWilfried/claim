@@ -43,8 +43,8 @@ public class UserController {
 			return;
 		}
 		
-		user.setUserName(name);
-		user.setUserFirstName(firstName);
+		user.setUserName(name.toUpperCase());
+		user.setUserFirstName(firstName.toLowerCase());
 		user.setUserEmail(email);
 		user.setUserRole(role);
 		user.setPassWord(password);
@@ -67,8 +67,8 @@ public class UserController {
 			return;
 		}
 
-		user.setUserName(name);
-		user.setUserFirstName(firstName);
+		user.setUserName(name.toUpperCase());
+		user.setUserFirstName(firstName.toLowerCase());
 		user.setUserEmail(email);
 		user.setIdUser(id);
 
@@ -106,7 +106,6 @@ public class UserController {
 
 	}
 
-
 	public void disableUserController(int id) {
 		if (id < 1) {
 			msgUserController = ClaimConstanteUtil.MSG_VALIDE_ID;
@@ -117,6 +116,59 @@ public class UserController {
 		msgUserController = (r > 0) ? ClaimConstanteUtil.MSG_DISABLE_USER_STATUS
 				          : ClaimConstanteUtil.MSG_FAILED_DISABLE_USER_STATUS; 
 	}
+	
+	public void enableUserController(int id) {
+		if (id < 1) {
+			msgUserController = ClaimConstanteUtil.MSG_VALIDE_ID;
+			return ;  
+		}
+		
+		int r = userService.enableUser(id);
+
+		msgUserController = (r > 0) ? ClaimConstanteUtil.MSG_ENABLE_USER_STATUS
+			            	: ClaimConstanteUtil.MSG_FAILED_ENABLE_USER_STATUS ; 
+	}
+	
+	public User loginController(String user_email, String password) {
+		if (ClaimControlUserUtil.checkAllFields(user_email, password)) {
+			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;
+			return null;
+		}
+
+		if (!ClaimControlUserUtil.emailValid(user_email)) {
+			msgUserController = ClaimConstanteUtil.MSG_INVALID_EMAIL;
+			return null;
+		}
+
+		User user = userService.login(user_email);
+
+		if (user == null) { msgUserController = ClaimConstanteUtil.MSG_ERROR_LOGIN;   return null; 	 }		
+		else { 
+			
+			if ( !user.getUserStatus() ) { msgUserController = ClaimConstanteUtil.MSG_DISABLE_STATUS;  return null; }
+
+			// System.out.println("\n Pass == " + user.getPassWord());
+			
+			if ( !ClaimControlUserUtil.verifyPassword(password, user.getPassWord())) {
+				
+				msgUserController = ClaimConstanteUtil.MSG_ERROR_LOGIN;  
+			    return null;
+			}		
+		}
+
+		return user;   
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -148,7 +200,7 @@ public class UserController {
 			return null;
 		}
 		
-		User user = userService.findUserByName(name);
+		User user = userService.findUserByName(name.toUpperCase());
 		if (user == null) {
 			msgUserController = ClaimConstanteUtil.MSG_FAILLED_FIND_USER;
 			return null;
@@ -158,7 +210,7 @@ public class UserController {
 	}
 	
 	public User findUserByFirstNameController(String firstName) {
-		if (ClaimControlUserUtil.checkAllFields(firstName)) {
+		if (ClaimControlUserUtil.checkAllFields(firstName.toLowerCase())) {
 			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;
 			return null;
 		}
@@ -178,46 +230,8 @@ public class UserController {
 		 return allUser ;
 	}
 	
-	public User loginController(String user_email, String password) {
-		if (ClaimControlUserUtil.checkAllFields(user_email, password)) {
-			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;
-			return null;
-		}
-
-		if (!ClaimControlUserUtil.emailValid(user_email)) {
-			msgUserController = ClaimConstanteUtil.MSG_INVALID_EMAIL;
-			return null;
-		}
-
-		User user = userService.login(user_email);
-
-		if (user == null) { msgUserController = ClaimConstanteUtil.MSG_ERROR_LOGIN;   return null; 	 }		
-		else { 
-			
-			if ( !user.getUserStatus() ) { msgUserController = ClaimConstanteUtil.MSG_DISABLE_STATUS;  return null; }
-
-			if ( !ClaimControlUserUtil.verifyPassword(password, user.getPassWord())) {
-				
-				msgUserController = ClaimConstanteUtil.MSG_ERROR_LOGIN;  
-			    return null;
-			}		
-		}
-
-		return user;   
-	}
 	
 	
-	public void enableUserController(int id) {
-		if (id < 1) {
-			msgUserController = ClaimConstanteUtil.MSG_VALIDE_ID;
-			return ;  
-		}
-		
-		int r = userService.enableUser(id);
-
-		msgUserController = (r > 0) ? ClaimConstanteUtil.MSG_ENABLE_USER_STATUS
-			            	: ClaimConstanteUtil.MSG_FAILED_ENABLE_USER_STATUS ; 
-	}
 
 	public void deleteUserController(int id) {
 		if (id < 1) {
