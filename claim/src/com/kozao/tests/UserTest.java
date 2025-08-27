@@ -14,7 +14,7 @@ public class UserTest {
 
 	public UserController userController = new UserController();
 	
-	/*
+	
 	@Test
 	public void testCreateUser() {
 
@@ -92,7 +92,7 @@ public class UserTest {
 		
 		assertNotNull(ClaimConstanteUtil.MSG_USER_NOT_NULL, user);
 	}
-	*/
+
 	@Test  
 	public void testdeleteUserController() {
 
@@ -101,6 +101,7 @@ public class UserTest {
 		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.QUERY_USER_DELETE,
 				UserController.msgUserController);
 	}
+    
 	
 //	@Test  
 //	public void testloginController() { // "L'objet ne doit pas être null"
