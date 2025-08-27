@@ -18,7 +18,10 @@ public class UserController {
 	public static String msgUserController;
 
 	public void addUserController(String name, String firstName, String email, String role) {
-
+        name = name.trim();
+        firstName = firstName.trim();
+        email = email.trim();
+        role = role.trim();
 		if (ClaimControlUserUtil.checkAllFields(name, firstName, email, role)) {
 
 			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;	
@@ -57,6 +60,10 @@ public class UserController {
 
 	public void updateUserProfilController(String name, String firstName, String email, int id) {
 
+		name = name.trim();
+        firstName = firstName.trim();
+        email = email.trim();
+        
 		if (ClaimControlUserUtil.controlUpdateUserProfil(name, firstName, email, id)) {
 
 			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;
@@ -80,6 +87,11 @@ public class UserController {
 	}
 
 	public void updatePassWordController(String name, String oldPassword, String newPassword) {
+		
+		name = name.trim();
+		oldPassword = oldPassword.trim();
+		newPassword = newPassword.trim();
+		
 		if (ClaimControlUserUtil.checkAllFields(name, oldPassword, newPassword)) {
 
 			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;
@@ -130,6 +142,10 @@ public class UserController {
 	}
 	
 	public User loginController(String user_email, String password) {
+		
+		user_email = user_email.trim();
+		password = password.trim();
+		
 		if (ClaimControlUserUtil.checkAllFields(user_email, password)) {
 			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;
 			return null;
