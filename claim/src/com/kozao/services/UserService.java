@@ -12,8 +12,6 @@ public interface UserService {
 
 	int updatePassWord(String name, String newPassword);
 
-	boolean findPassWord(String passWord);
-
 	int disableUser(int userId);
 
 	int enableUser(int userId);
