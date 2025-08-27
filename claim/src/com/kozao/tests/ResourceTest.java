@@ -14,13 +14,23 @@ public class ResourceTest {
 	
 	ResourceController resourceController = new ResourceController();
 	
-	
+
 	@Test
 	public void testCreateResource() {
 
-		resourceController.addResourceController("Ressource1", "Premier test");
+		resourceController.addResourceController("Ressource4", "Quatrieme test");
 
 		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_CREATE_RESOURCE,
+				ResourceController.msgResourceController);
+	}
+	
+	
+	@Test
+	public void testUpdateResource() {
+
+		resourceController.updateResourceController("1Ressource1", "Premiere ressource modifier", 1);;
+
+		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_UPDATE_RESOURCE,
 				ResourceController.msgResourceController);
 	}
 
