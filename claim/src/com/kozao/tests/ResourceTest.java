@@ -13,10 +13,12 @@ import static org.junit.Assert.assertNotNull;
 public class ResourceTest {
 	
 	ResourceController resourceController = new ResourceController();
+	
+	
 	@Test
 	public void testCreateResource() {
 
-		resourceController.addResourceController(null, null);
+		resourceController.addResourceController("Ressource1", "Premier test");
 
 		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_CREATE_RESOURCE,
 				ResourceController.msgResourceController);
