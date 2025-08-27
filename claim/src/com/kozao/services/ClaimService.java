@@ -16,9 +16,9 @@ public interface ClaimService {
 	int deleteReclamation(int claimId);
 
 	Claim findReclamationById(int claimId);
-	
-	Claim findReclamationByIdUser(int userId);
 
 	List<Claim> findAllReclamation();
+	
+	List<Claim> findReclamationByIdUser(int userId);
 
 }
