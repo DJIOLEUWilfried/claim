@@ -25,7 +25,7 @@ public class UserTest {
 	}
 	
 	@Test
-	public void testupdateUserProfilController() {
+	public void testupdateUserProfil() {
 
 		userController.updateUserProfilController("DJAMEN1", "Jores1", "djamenjores1@gmail.com", 13);
 
@@ -34,7 +34,7 @@ public class UserTest {
 	}	
 	
 	@Test  
-	public void testUpdatePassWordController() {
+	public void testUpdatePassWord() {
 
 		userController.updatePassWordController("DJIOLEU1", "ras2", "ras3");
 		
@@ -43,7 +43,7 @@ public class UserTest {
 	}
 		
 	@Test  
-	public void testdisableUserController() {
+	public void testdisableUser() {
 
 		userController.disableUserController(18);
 		
@@ -52,7 +52,7 @@ public class UserTest {
 	}
 		
 	@Test  
-	public void testenableUserController() {
+	public void testenableUser() {
 
 		userController.enableUserController(18);
 		
@@ -61,7 +61,7 @@ public class UserTest {
 	}	
 	
 	@Test  
-	public void testfindUserByIdController() { 
+	public void testfindUserById() { 
 
 		User user = userController.findUserByIdController(17);
 		
@@ -69,7 +69,7 @@ public class UserTest {
 	}
 	
 	@Test  
-	public void testfindUserByNameController() { 
+	public void testfindUserByName() { 
 
 		User user = userController.findUserByNameController("KAMGA2");
 		
@@ -77,7 +77,7 @@ public class UserTest {
 	}
 	
 	@Test  
-	public void testfindUserByFirstNameController() { 
+	public void testfindUserByFirstName() { 
 
 		User user = userController.findUserByFirstNameController("Cyria");
 		
@@ -86,7 +86,7 @@ public class UserTest {
 	
 	
 	@Test  
-	public void testfindAllUserController() { 
+	public void testfindAllUser() { 
 
 		List<User> user = userController.findAllUserController();
 		
@@ -94,7 +94,7 @@ public class UserTest {
 	}
 
 	@Test  
-	public void testdeleteUserController() {
+	public void testdeleteUser() {
 
 		userController.deleteUserController(16);
 		
@@ -104,7 +104,7 @@ public class UserTest {
     
 	
 //	@Test  
-//	public void testloginController() { // "L'objet ne doit pas être null"
+//	public void testlogin() { // "L'objet ne doit pas être null"
 //
 //		User user = userController.loginController("djioleuwilfried@gmail.com", "Claim25");
 //		
