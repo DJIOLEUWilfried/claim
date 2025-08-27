@@ -59,7 +59,7 @@ public class ResourceTest {
 		
 		assertNotNull(ClaimConstanteUtil.MSG_RESOURCE_NOT_NULL, resource);
 	}
-	*/
+	
 	
 	@Test  
 	public void testfindUserByName() { 
@@ -69,9 +69,16 @@ public class ResourceTest {
 		assertNotNull(ClaimConstanteUtil.MSG_RESOURCE_NOT_NULL, resource);
 	}
 	
+	*/
 	
-	
+	@Test
+	public void testfindAllResources() { 
 
+		List<Resource> resource = resourceController.findAllUserController();
+		
+		assertNotNull(ClaimConstanteUtil.MSG_RESOURCE_NOT_NULL, resource);
+	}
+	
 	
 	
 	
