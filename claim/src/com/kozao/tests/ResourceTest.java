@@ -11,6 +11,8 @@ import com.kozao.utils.ClaimConstanteUtil;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.List;
+
 
 
 
@@ -48,7 +50,7 @@ public class ResourceTest {
 				ResourceController.msgResourceController);
 	}
 	
-	*/
+	
 	
 	@Test  
 	public void testfindUserById() { 
@@ -57,9 +59,19 @@ public class ResourceTest {
 		
 		assertNotNull(ClaimConstanteUtil.MSG_RESOURCE_NOT_NULL, resource);
 	}
+	*/
+	
+	@Test  
+	public void testfindUserByName() { 
+
+		Resource resource = resourceController.findResourceByNameController("Ressource2");
+		
+		assertNotNull(ClaimConstanteUtil.MSG_RESOURCE_NOT_NULL, resource);
+	}
 	
 	
 	
+
 	
 	
 	
