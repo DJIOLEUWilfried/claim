@@ -20,36 +20,7 @@ public class UserServiceImpl implements UserService {
 
 	public UserServiceImpl() {}
 	
-	@Override
-	public User login(String user_email) {
 
-		try {
-			Connection con = ConnexionDB.getConnection();
-
-			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_FIND_EMAIL);
-
-			pre.setString(1, user_email);
-
-			ResultSet rs = pre.executeQuery();
-			if (rs.next()) {
-				User user = new User();
-
-				user.setUserFirstName(rs.getString("user_first_name"));
-				user.setUserRole(rs.getString("user_role"));
-				user.setUserStatus(rs.getBoolean("user_status"));
-				user.setPassWord(rs.getString("password"));
-
-				return user;
-			}
-
-		} catch (SQLException e) {
-
-			logger.error(String.format("\n Error : %s", e));
-		}
-
-		return null;
-	}
-	
 	
 	@Override
 	public int addUser(User user) {
@@ -117,13 +88,13 @@ public class UserServiceImpl implements UserService {
 			r = pre.executeUpdate();
 
 		} catch (SQLException e) {
-			logger.error(String.format("\n updatePassWord(). Error : %s", e.getMessage()));
+			logger.error(String.format("\n . Error : %s", e.getMessage()));
 		}
 		
 		return r;
 	}
 
-	@Override
+
 	public boolean findPassWord(String oldPassword) {
 
 		try {
@@ -184,13 +155,43 @@ public class UserServiceImpl implements UserService {
 			return id;
 
 		} catch (SQLException e) {
-
 			logger.error(String.format("\n Error : %s", e));
 		}
 
 		return 0;
 	}
 
+	@Override
+	public User login(String user_email) {
+
+		try {
+			Connection con = ConnexionDB.getConnection();
+
+			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_FIND_EMAIL);
+
+			pre.setString(1, user_email);
+
+			ResultSet rs = pre.executeQuery();
+			if (rs.next()) {
+				User user = new User();
+
+				user.setUserFirstName(rs.getString("user_name"));
+				user.setUserRole(rs.getString("user_role"));
+				user.setUserStatus(rs.getBoolean("user_status"));
+				user.setPassWord(rs.getString("password"));
+
+				return user;
+			}
+
+		} catch (SQLException e) {
+
+			logger.error(String.format("\n Error : %s", e));
+		}
+
+		return null;
+	}
+	
+	
 	@Override
 	public int deleteUser(int id) {
 		try {
