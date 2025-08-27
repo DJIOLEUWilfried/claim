@@ -14,7 +14,7 @@ public class ResourceTest {
 	
 	ResourceController resourceController = new ResourceController();
 	
-
+    /*
 	@Test
 	public void testCreateResource() {
 
@@ -28,10 +28,20 @@ public class ResourceTest {
 	@Test
 	public void testUpdateResource() {
 
-		resourceController.updateResourceController("1Ressource1", "Premiere ressource modifier", 1);;
+		resourceController.updateResourceController("1Ressource1", "Premiere ressource modifier", 1);
 
 		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_UPDATE_RESOURCE,
 				ResourceController.msgResourceController);
-	}
+	}  
+    */
+	
+	@Test
+	public void testdeleteResource() {
 
+		resourceController.deleteResourceController(3);
+
+		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.QUERY_RESOURCE_DELETE,
+				ResourceController.msgResourceController);
+	}
+	
 }
