@@ -53,22 +53,30 @@ public class ClaimConstanteUtil {
 	public static final String MSG_INVALID_ROLE = "Please enter a valid role !!";
 	public static final String MSG_DISABLE_STATUS = "Unable to log in, you have been disabled by the administrator. Please contact them !!" ;
 	public static final String MSG_TEST_FAILED = "Test failed !!" ;
-
 	public static final String MSG_ACCOUNT_ALREADY_EXISTS = "An account already exists with this email address !!";
 	public static final String MSG_USER_NOT_NULL = "The user object must not be null !!";
 	
 	
-	// Resource   
+	// Resource      
 	public static final String QUERY_CREATE_RESOURCE = "INSERT INTO resource (resource_name, resource_description) VALUES (?, ?)";
-	public static final String QUERY_UPDATE_RESOURCE = "UPDATE resource SET resource_name=?, description_resource=?, WHERE resource_id=?" ;
+	public static final String QUERY_UPDATE_RESOURCE = "UPDATE resource SET resource_name=?, description_resource=? WHERE resource_id=?" ;
 	public static final String QUERY_DELETE_RESOURCE = "DELETE resource FROM resource_id=?" ;  
 	public static final String QUERY_FIND_RESOURCE_BY_ID = "SELECT resource_id, resource_name, resource_description FROM resource WHERE resource_id=?";
 	public static final String QUERY_FIND_RESOURCE_BY_NAME = "SELECT resource_id, resource_name, resource_description FROM resource WHERE resource_name=?";
 	public static final String QUERY_FIND_ALL_RESOURCE = "SELECT resource_id, resource_name, resource_description FROM resource ";
 
 	
+	public static final String MSG_CREATE_RESOURCE = "Resource created successfully !!" ;
+	public static final String MSG_FAILED_CREATE_RESOURCE = "Failed to create resource !!" ;
+	public static final String MSG_UPDATE_RESOURCE = "\n Resource successfully modified !!" ;
+	public static final String MSG_FAILED_UPDATE_RESOURCE = "\n Resource modification failed !!" ;
+	public static final String QUERY_RESOURCE_DELETE = "Resource successfully deleted !!" ;
+	public static final String QUERY_FAILED_RESOURCE_DELETE = "Failed to delete resource !!" ;
+	public static final String MSG_FAILLED_FIND_RESOURCE = "Resource search error !!";
+	
+	
+	
 	// Claim
-    //   id_claim	reason	submission_date	 confirmation_date	priority	status_claim	id_user	resource_id
 	public static final String QUERY_CREATE_CLAIM = "INSERT INTO claim (reason, submission_date, confirmation_date, priority, status_claim, id_user, resource_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 	
@@ -77,3 +85,4 @@ public class ClaimConstanteUtil {
 	
 	
 }
+
