@@ -7,11 +7,11 @@ import com.kozao.models.enumations.StatusClaim;
 
 public interface ClaimService {
 
-	int addReclamation(Claim claim, StatusClaim statusClaim, int userId, int resourceId);
+	int addReclamation(Claim claim);
 
-	int updateReclamation(Claim claim, StatusClaim statusClaim, int userId, int resourceId);
+	int updateReclamation(Claim claim);
 	
-	int updateStatusReclamation(Claim claim, StatusClaim statusClaim, int userId, int resourceId);
+	int updateStatusReclamation(Claim claim);
 
 	int deleteReclamation(int claimId);
 
