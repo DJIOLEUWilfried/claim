@@ -1,23 +1,20 @@
 package com.kozao.models;
 
-import java.util.List;
 
 public class Resource {
 	
 		private int idResource;
 		private String resourceName;
 		private String resourceDescription;
-		private List<Claim> claims;
 		
 		public Resource() {
 			super();
 		}
 
-		public Resource(String resource, String resourceDescription, List<Claim> claims) {
+		public Resource(String resource, String resourceDescription) {
 			super();
 			this.resourceName = resource;
 			this.resourceDescription = resourceDescription;
-			this.claims = claims;
 		}
 
 		public int getIdResource() {
@@ -43,21 +40,11 @@ public class Resource {
 		public void setResourceDescription(String resourceDescription) {
 			this.resourceDescription = resourceDescription;
 		}
-
-		public List<Claim> getClaims() {
-			return claims;
+		
+		@Override
+		public String toString() {
+			return String.format("Id= %s  Name= %s  Description= %s ", idResource, resourceName, resourceDescription);
 		}
 
-		public void setClaims(List<Claim> claims) {
-			this.claims = claims;
-		}
-
-	
-
-
-		
-		
-		
-		
 
 }
