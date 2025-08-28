@@ -17,8 +17,10 @@ public interface ClaimService {
 
 	Claim findReclamationById(int claimId);
 
+	List<Claim> findReclamationByIdUser(int userId);
+	
 	List<Claim> findAllReclamation();
 	
-	List<Claim> findReclamationByIdUser(int userId);
+	
 
 }
