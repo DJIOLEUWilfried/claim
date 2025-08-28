@@ -9,15 +9,15 @@ public class Claim {
 	private String submissionDate ;
 	private String confirmationDate ;
 	private String priority ;
-	private StatusClaim statusClaim;
 	
-	private int userId;
-	private int resourceId;
+	private StatusClaim statusClaim;
+	private User userId;
+	private Resource resourceId;
 
 	public Claim() {}
 	
 	public Claim(String reason, String submissionDate, String confirmationDate, String priority, StatusClaim statusClaim,
-			int userId, int resourceId) {
+			User userId, Resource resourceId) {
 		super();
 		this.reason = reason;
 		this.submissionDate = submissionDate;
@@ -64,21 +64,35 @@ public class Claim {
 	public void setStatusClaim(StatusClaim statusClaim) {
 		this.statusClaim = statusClaim;
 	}
-	public int getUserId() {
+
+	public User getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+
+	public void setUserId(User userId) {
 		this.userId = userId;
 	}
-	public int getResourceId() {
+
+	public Resource getResourceId() {
 		return resourceId;
 	}
-	public void setResourceId(int resourceId) {
+
+	public void setResourceId(Resource resourceId) {
 		this.resourceId = resourceId;
 	}
-	
 
+	public StatusClaim getStatusClaim() {
+		return statusClaim;
+	}
 	
+	
+	@Override
+	public String toString() {
+		return String.format("Id= %s  Resource= %s  Reason= %s  Owner= %s  Submission Date= %s  Confirmation Date= %s  Status= %s  Priority= %s", 
+				idClaim, resourceId.getResourceName(), reason, userId.getUserName(), submissionDate, confirmationDate, statusClaim, priority);
+				
+	}
+
 	
 
 }
