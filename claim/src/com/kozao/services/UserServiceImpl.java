@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
 			pre.setString(1, user.getUserName());
 			pre.setString(2, user.getUserFirstName());
 			pre.setString(3, user.getUserEmail());
-			pre.setString(4, user.getUserRole());
+			pre.setInt(4, user.getRoleJoin().getRoleId());
 			pre.setBoolean(5, true);
 			pre.setString(6, user.getPassWord());
 
@@ -176,7 +176,7 @@ public class UserServiceImpl implements UserService {
 				User user = new User();
 
 				user.setUserFirstName(rs.getString("user_name"));
-				user.setUserRole(rs.getString("user_role"));
+				// user.setUserRole(rs.getInt("user_role"));
 				user.setUserStatus(rs.getBoolean("user_status"));
 				user.setPassWord(rs.getString("password"));
 
@@ -226,13 +226,16 @@ public class UserServiceImpl implements UserService {
 
 			ResultSet rs = pre.executeQuery();
 			if (rs.next()) {
+				Role role = new Role();
+				role.setRoleName(rs.getString("role_name"));
+
 				User user = new User();
 
 				user.setIdUser(rs.getInt("id_user"));
 				user.setUserName(rs.getString("user_name"));
 				user.setUserFirstName(rs.getString("user_first_name"));
 				user.setUserEmail(rs.getString("user_email"));
-				user.setUserRole(rs.getString("user_role"));
+				user.setRoleJoin(role);
 				user.setUserStatus(rs.getBoolean("user_status"));
 
 				return user;
@@ -259,15 +262,17 @@ public class UserServiceImpl implements UserService {
 
 			ResultSet rs = pre.executeQuery();
 			if (rs.next()) {
+				Role role = new Role();
+				role.setRoleName(rs.getString("role_name"));
+
 				User user = new User();
 
 				user.setIdUser(rs.getInt("id_user"));
 				user.setUserName(rs.getString("user_name"));
 				user.setUserFirstName(rs.getString("user_first_name"));
 				user.setUserEmail(rs.getString("user_email"));
-				user.setUserRole(rs.getString("user_role"));
+				user.setRoleJoin(role);
 				user.setUserStatus(rs.getBoolean("user_status"));
-                user.setPassWord(rs.getString("password"));
 				
 				return user;
 			}
@@ -293,13 +298,16 @@ public class UserServiceImpl implements UserService {
 
 			ResultSet rs = pre.executeQuery();
 			if (rs.next()) {
+				Role role = new Role();
+				role.setRoleName(rs.getString("role_name"));
+
 				User user = new User();
 
 				user.setIdUser(rs.getInt("id_user"));
 				user.setUserName(rs.getString("user_name"));
 				user.setUserFirstName(rs.getString("user_first_name"));
 				user.setUserEmail(rs.getString("user_email"));
-				user.setUserRole(rs.getString("user_role"));
+				user.setRoleJoin(role);
 				user.setUserStatus(rs.getBoolean("user_status"));
 
 				return user;
@@ -314,38 +322,6 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-	@Override
-	public List<User> findAllUser() {
-
-		List<User> allUser = new ArrayList<>();
-
-		try {
-			Connection con = ConnexionDB.getConnection();
-
-			Statement stm = con.createStatement();
-
-			ResultSet rs = stm.executeQuery(ClaimConstanteUtil.QUERY_FIND_ALL_USER);
-			while (rs.next()) {
-				User user = new User();
-
-				user.setIdUser(rs.getInt("id_user"));
-				user.setUserName(rs.getString("user_name"));
-				user.setUserFirstName(rs.getString("user_first_name"));
-				user.setUserEmail(rs.getString("user_email"));
-				user.setUserRole(rs.getString("user_role"));
-				user.setUserStatus(rs.getBoolean("user_status"));
-
-				allUser.add(user);
-			}
-
-			return allUser;
-
-		} catch (SQLException e) {
-			logger.error(String.format("\n Error : %s", e));
-		}
-
-		return allUser;
-	}
 
 	public boolean findEmail(String user_email) {
 		try {
@@ -363,6 +339,55 @@ public class UserServiceImpl implements UserService {
 		}
 		return false;
 	}
+	
+	
+	@Override
+	public List<User> findAllUser() {
 
+		List<User> allUser = new ArrayList<>();
+
+		try {
+			Connection con = ConnexionDB.getConnection();
+
+			Statement stm = con.createStatement();
+
+		    String QUERY = "SELECT * FROM users, role WHERE users.user_role = role.role_id";
+
+			ResultSet rs = stm.executeQuery(QUERY);
+
+			while (rs.next()) {
+				
+                Role role = new Role();
+				role.setRoleName(rs.getString("role_name"));
+
+                User user = new User();
+				user.setIdUser(rs.getInt("id_user"));
+				user.setUserName(rs.getString("user_name"));
+				user.setUserFirstName(rs.getString("user_first_name"));
+				user.setUserEmail(rs.getString("user_email"));
+				user.setRoleJoin(role);
+				user.setUserStatus(rs.getBoolean("user_status"));
+				
+				allUser.add(user);
+			}
+
+			return allUser;
+
+		} catch (SQLException e) {
+			logger.error(String.format("\n Error : %s", e));
+		}
+
+		return allUser;
+	}
+	
+	public int forgotPassword(String email) {
+		
+		
+		
+		
+		return 0;
+	}
+	
+	
 	
 }
