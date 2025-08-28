@@ -1,0 +1,16 @@
+package com.kozao.utils;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class ClaimControlClaimUtil {
+	
+	public String  dateAndTime() {
+		
+		LocalDateTime myDateObj = LocalDateTime.now();
+	    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy  HH:mm:ss");
+
+	    return myDateObj.format(myFormatObj);
+	}
+
+}
