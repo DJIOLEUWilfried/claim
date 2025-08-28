@@ -69,15 +69,17 @@ public class ClaimServiceImpl implements ClaimService{
 	}
 
 	@Override
-	public Claim findReclamationByIdUser(int userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Claim> findAllReclamation() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public List<Claim> findReclamationByIdUser(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 
 }
