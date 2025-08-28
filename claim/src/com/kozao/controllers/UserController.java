@@ -2,6 +2,7 @@ package com.kozao.controllers;
 
 import java.util.List;
 
+import com.kozao.models.Role;
 import com.kozao.models.User;
 import com.kozao.services.UserService;
 import com.kozao.services.UserServiceImpl;
@@ -17,22 +18,22 @@ public class UserController {
 	
 	public static String msgUserController;
 
-	public void addUserController(String name, String firstName, String email, String role) {
+	public void addUserController(String name, String firstName, String email, int role) {
         name = name.trim();
         firstName = firstName.trim();
         email = email.trim();
-        role = role.trim();
-		if (ClaimControlUserUtil.checkAllFields(name, firstName, email, role)) {
+        
+		if (ClaimControlUserUtil.checkAllFields(name, firstName, email) || role == 0) {
 
 			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;	
 			return;
 		}  
 		
-		if ( !"user".equalsIgnoreCase(role) && !"admin".equalsIgnoreCase(role) ) { 
-		    			
-			msgUserController = ClaimConstanteUtil.MSG_INVALID_ROLE;
-		    return;
-		}
+//		if ( !"user".equalsIgnoreCase(role) && !"admin".equalsIgnoreCase(role) ) { 
+//		    			
+//			msgUserController = ClaimConstanteUtil.MSG_INVALID_ROLE;
+//		    return;
+//		}
 
 		
 		if (ClaimControlUserUtil.emailValid(email) == false) {
@@ -49,7 +50,11 @@ public class UserController {
 		user.setUserName(name.toUpperCase());
 		user.setUserFirstName(firstName.toLowerCase());
 		user.setUserEmail(email);
-		user.setUserRole(role);
+
+		Role ro = new Role();
+		ro.setRoleId(role);
+		user.setRoleJoin(ro);
+		
 		user.setPassWord(password);
 
 		int r = userService.addUser(user);
@@ -175,25 +180,6 @@ public class UserController {
 		return user;   
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public User findUserByIdController(int id) {
 		if (id < 1) {
 			msgUserController = ClaimConstanteUtil.MSG_VALIDE_ID;
@@ -211,6 +197,7 @@ public class UserController {
 	}
 	
 	public User findUserByNameController(String name) {
+		name = name.trim();
 		if (ClaimControlUserUtil.checkAllFields(name)) {
 			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;
 			return null;
@@ -226,6 +213,8 @@ public class UserController {
 	}
 	
 	public User findUserByFirstNameController(String firstName) {
+		firstName = firstName.trim();
+
 		if (ClaimControlUserUtil.checkAllFields(firstName.toLowerCase())) {
 			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;
 			return null;
@@ -246,9 +235,6 @@ public class UserController {
 		 return allUser ;
 	}
 	
-	
-	
-
 	public void deleteUserController(int id) {
 		if (id < 1) {
 			msgUserController = ClaimConstanteUtil.MSG_VALIDE_ID;
