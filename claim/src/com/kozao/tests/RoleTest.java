@@ -7,16 +7,13 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.kozao.controllers.ResourceController;
 import com.kozao.controllers.RoleController;
-import com.kozao.models.Resource;
 import com.kozao.models.Role;
 import com.kozao.utils.ClaimConstanteUtil;
 
 public class RoleTest {
 
 	RoleController roleController = new RoleController();
-
 	
 	@Test
 	public void testCreateRole() {
@@ -27,7 +24,6 @@ public class RoleTest {
 				RoleController.msgRoleController);
 	}
 	
-
 
 	@Test
 	public void testUpdateRole() {
@@ -48,7 +44,6 @@ public class RoleTest {
 				RoleController.msgRoleController);
 	}
 	
-
 	
 	@Test
 	public void testfindRoleById() {
@@ -58,8 +53,7 @@ public class RoleTest {
 		assertNotNull(ClaimConstanteUtil.MSG_RESOURCE_NOT_NULL, role);
 	}
 
-   
-	
+   	
 	@Test
 	public void testfindRoleByName() {
 
