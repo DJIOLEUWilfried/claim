@@ -24,12 +24,10 @@ public class ClaimServiceImpl implements ClaimService{
 	private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
 
 	@Override
-	public int addReclamation(Claim claim) {
+	public int addClaim(Claim claim) {
 		int r = 0;
 
-		try {
-	//     id_claim, resource_id, reason, id_user, submission_date, confirmation_date, status_claim, priority
-			
+		try {			
 			Connection con = ConnexionDB.getConnection();
 			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_CREATE_CLAIM);
 
@@ -39,7 +37,6 @@ public class ClaimServiceImpl implements ClaimService{
 			pre.setString(4, claim.getSubmissionDate());
 			pre.setString(5, claim.getConfirmationDate());
 			pre.setString(6, claim.getStatusClaim().name());  // PENDING
-			pre.setString(7, claim.getPriority());
 
 			r = pre.executeUpdate();
 
@@ -51,19 +48,16 @@ public class ClaimServiceImpl implements ClaimService{
 	}
 
 	@Override
-	public int updateReclamation(Claim claim) {
+	public int updateClaim(Claim claim) {
 		int r = 0;
 
-		try {
-			// resource_id, reason, id_user, submission_date, confirmation_date, status_claim, priority
-			
+		try {			// int resourceId, String reason, int claimId
 			Connection con = ConnexionDB.getConnection();
 			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_UPDATE_CLAIM);
 
 			pre.setInt(1, claim.getResourceId().getIdResource());
 			pre.setString(2, claim.getReason());		
-			pre.setString(3, claim.getPriority());
-			pre.setInt(4, claim.getIdClaim());
+			pre.setInt(3, claim.getIdClaim());
 			
 			r = pre.executeUpdate();
 
@@ -75,11 +69,10 @@ public class ClaimServiceImpl implements ClaimService{
 	}
 
 	@Override
-	public int updateStatusReclamation(Claim claim) {
+	public int updateStatusClaim(Claim claim) {
 		int r = 0;
 
 		try {
-			
 			Connection con = ConnexionDB.getConnection();
 			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_UPDATE_STATUS_CLAIM);
 
@@ -87,7 +80,7 @@ public class ClaimServiceImpl implements ClaimService{
 			pre.setInt(2, claim.getIdClaim());
 			
 			r = pre.executeUpdate();
-
+            
 		} catch (SQLException e) {
 			logger.error(String.format("\n Error : %s", e));
 		}
@@ -96,7 +89,7 @@ public class ClaimServiceImpl implements ClaimService{
 	}
 
 	@Override
-	public int deleteReclamation(int claimId) {
+	public int deleteClaim(int claimId) {
 		try {
 			
 			Connection con = ConnexionDB.getConnection();
@@ -117,7 +110,7 @@ public class ClaimServiceImpl implements ClaimService{
 	}
 
 	@Override
-	public Claim findReclamationById(int claimId) {
+	public Claim findClaimById(int claimId) {
 		
 		try {
 			Connection con = ConnexionDB.getConnection();
@@ -141,7 +134,7 @@ public class ClaimServiceImpl implements ClaimService{
 				claim.setIdClaim(rs.getInt("id_claim"));
 				claim.setResourceId(resource);
 				claim.setReason(rs.getString("reason"));
-				claim.setUserId(user);
+			    claim.setUserId(user);
 				claim.setSubmissionDate(rs.getString("submission_date"));
 				claim.setConfirmationDate(rs.getString("confirmation_date"));
 				claim.setStatusClaim(statusClaim);
@@ -150,14 +143,14 @@ public class ClaimServiceImpl implements ClaimService{
 			}
 
 		} catch (SQLException e) {
-			logger.error(String.format("\n Error : %s", e));
+			logger.error(String.format("\n Error findClaimById() : %s", e));
 		}
 
 		return null;
 	}
 
 	@Override   
-	public List<Claim> findReclamationByIdUser(int userId) {
+	public List<Claim> findClaimByIdUser(int userId) {
 		
 		List<Claim> allClaimByUser = new ArrayList<>();
 		try {
@@ -167,7 +160,8 @@ public class ClaimServiceImpl implements ClaimService{
 			pre.setInt(1, userId);
 
 			ResultSet rs = pre.executeQuery();
-			if (rs.next()) {
+			
+			while (rs.next()) {
 				Resource resource = new Resource();
 				resource.setResourceName(rs.getString("resource_name"));
 
@@ -199,7 +193,7 @@ public class ClaimServiceImpl implements ClaimService{
 	}
 
 	@Override   
-	public List<Claim> findAllReclamation() {
+	public List<Claim> findAllClaim() {
 		
 		List<Claim> allClaim = new ArrayList<>();
 		try {
@@ -238,18 +232,22 @@ public class ClaimServiceImpl implements ClaimService{
 			logger.error(String.format("\n Error : %s", e));
 		}
 		
-		return allClaim;
+		return null;
 	}
 
 	@Override
 	public List<Claim> historyOfAllClaims(String date) {
 		List<Claim> allClaim = new ArrayList<>();
+		
+		 
 		try {
 			Connection con = ConnexionDB.getConnection();
-			Statement stm = con.createStatement();
+			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_FIND_HISTORY_ALL_CLAIM);
 
-			ResultSet rs = stm.executeQuery(ClaimConstanteUtil.QUERY_FIND_HISTORY_ALL_CLAIM);
+			pre.setString(1, date);
 
+			ResultSet rs = pre.executeQuery();
+		
 			while (rs.next()) {
 				
 				Resource resource = new Resource();
@@ -280,7 +278,7 @@ public class ClaimServiceImpl implements ClaimService{
 			logger.error(String.format("\n Error : %s", e));
 		}
 		
-		return allClaim;
+		return null;
 	}
 
 	

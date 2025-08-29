@@ -12,5 +12,13 @@ public class ClaimControlClaimUtil {
 
 		return myDateObj.format(myFormatObj);
 	}
+	
+	public static boolean enumValid(String statusClaim) {
+
+		if (statusClaim == "PENDING" || statusClaim == "INPROGRESS" || statusClaim == "RESOLVED" || statusClaim == "REJETED" ) {
+			return true;
+		}
+		return false;
+	}
 
 }

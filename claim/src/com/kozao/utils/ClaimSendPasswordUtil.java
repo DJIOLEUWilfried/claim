@@ -21,8 +21,13 @@ public class ClaimSendPasswordUtil {
 	
 	public static String SendPassword(String email, String nameUser ) {
 		
-		String password = String.format("Claim%d", new Random().nextInt(1000));
 		
+		// public static final String TOKENS = UUID.randomUUID().toString();
+		
+		// String password = String.format("Claim%s", TOKEN);
+		String password = String.format("Claim%d", new Random().nextInt(1000));
+
+
 		final String expediteurEmail = "djioleuwilfried@gmail.com";
         final String motDePasseApp = "phuw pmkm cbui cpjs"; // Mot de passe d'application Gmail
 

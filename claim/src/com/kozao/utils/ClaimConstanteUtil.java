@@ -7,20 +7,20 @@ public class ClaimConstanteUtil {
 	public static final String URL = "jdbc:mysql://localhost:3306/claims_management";
 	public static final String USER = "root";
 	public static final String PASSWORD = "";	
-	public static final String JDBC_IS_NULL = "Driver JDBC non trouv� : ";
+	public static final String JDBC_IS_NULL = "Driver JDBC non trouver : ";
 	public static final String CONNEXION_ERROR = "Connexion error !! ";
 	
 	// User
 	public static final String QUERY_CREATE_USER = "INSERT INTO users (user_name, user_first_name, user_email, user_role, user_status, password) VALUES (?, ?, ?, ?, ?, ?)";
 	public static final String QUERY_UPDATE_USER = "UPDATE users SET user_name=?, user_first_name=?, user_email=?, user_role=?, password=? WHERE id_user=?";
 	public static final String QUERY_UPDATE_USER_PROFIL = "UPDATE users SET user_name=?, user_first_name=?, user_email=? WHERE id_user=?";
-	public static final String QUERY_UPDATE_PASSWORD = "UPDATE users SET password=? WHERE user_name=?";
+	public static final String QUERY_UPDATE_PASSWORD = "UPDATE users SET password=? WHERE user_first_name=?";
 	public static final String QUERY_FIND_PASSWORD = "SELECT password FROM users WHERE password=?";
 	public static final String QUERY_STAUT_USER = "UPDATE users SET user_status=? WHERE id_user=?";	
 	public static final String QUERY_DELETE_USER = "DELETE FROM users WHERE id_user=?";
-	public static final String QUERY_FIND_USER_BY_ID = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status FROM users WHERE id_user=?";
-	public static final String QUERY_FIND_USER_BY_NAME = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status, password FROM users WHERE user_name=?";
-	public static final String QUERY_FIND_USER_BY_FIRST_NAME = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status FROM users WHERE user_first_name=?";
+	public static final String QUERY_FIND_USER_BY_ID = "SELECT * FROM users, role WHERE users.user_role = role.role_id AND id_user=?";
+	public static final String QUERY_FIND_USER_BY_NAME = "SELECT * FROM users, role WHERE users.user_role = role.role_id AND user_name=?";
+	public static final String QUERY_FIND_USER_BY_FIRST_NAME = "SELECT * FROM users, role WHERE users.user_role = role.role_id AND user_first_name=?";
 	public static final String QUERY_FIND_ALL_USER = "SELECT * FROM users, role WHERE users.user_role = role.role_id AND user_status=1";
 	public static final String QUERY_LOGIN_USER = "SELECT user_name, user_role FROM users WHERE user_email=? AND password=?" ;
 	public static final String QUERY_FIND_EMAIL = "SELECT user_name, user_role, user_status, password FROM users WHERE user_email=?" ;
@@ -92,24 +92,33 @@ public class ClaimConstanteUtil {
 	public static final String MSG_ROLE_DELETE = "Role successfully deleted !!" ;
 	public static final String MSG_FAILED_ROLE_DELETE = "Failed to delete role !!" ;
 	public static final String MSG_FAILLED_FIND_ROLE = "Role search error !!";
-	public static final String MSG_ROLE_NOT_NULL = "The role object must not be null !!";
 	
 	
 	// Claim                                           id_claim	resource_id	reason	id_user	submission_date	confirmation_date	status_claim	priority
-	public static final String QUERY_CREATE_CLAIM = "INSERT INTO claim (resource_id, reason, id_user, submission_date, confirmation_date, status_claim, priority) VALUES (?, ?, ?, ?, ?, ?, ?)";
-	public static final String QUERY_UPDATE_CLAIM = "UPDATE claim SET resource_id=? , reason=?, priority WHERE id_claim=?";
-	public static final String QUERY_UPDATE_STATUS_CLAIM = "UPDATE claim SET status_claim=?, priority WHERE id_claim=?";
+	public static final String QUERY_CREATE_CLAIM = "INSERT INTO claim (resource_id, reason, id_user, submission_date, confirmation_date, status_claim) VALUES (?, ?, ?, ?, ?, ?)";
+	public static final String QUERY_UPDATE_CLAIM = "UPDATE claim SET resource_id=? , reason=? WHERE id_claim=?";
+	public static final String QUERY_UPDATE_STATUS_CLAIM = "UPDATE claim SET status_claim=? WHERE id_claim=?";
 	public static final String QUERY_DELETE_CLAIM = "DELETE FROM claim WHERE id_claim=?" ;  
-	public static final String QUERY_FIND_CLAIM_BY_ID = "SELECT * FORM claim, resource, users WHERE claim.resource_id = resource.resource_id AND claim.id_user = users.id_user AND id_claim=? AND etat=1";
-	public static final String QUERY_FIND_CLAIM_BY_ID_USER = "SELECT * FORM claim, resource, users WHERE claim.resource_id = resource.resource_id AND claim.id_user = users.id_user AND id_user=? AND etat=1";
-	public static final String QUERY_FIND_ALL_CLAIM = "SELECT * FORM claim, resource, users WHERE claim.resource_id = resource.resource_id AND claim.id_user = users.id_user AND etat=1";
-	public static final String QUERY_FIND_HISTORY_ALL_CLAIM = "SELECT * FORM claim, resource, users WHERE claim.resource_id = resource.resource_id AND claim.id_user = users.id_user";
+	public static final String QUERY_FIND_CLAIM_BY_ID_USER = "SELECT * FROM claim, resource, users WHERE claim.resource_id = resource.resource_id AND claim.id_user = users.id_user AND users.id_user=? AND etat=1";
+	public static final String QUERY_FIND_ALL_CLAIM = "SELECT * FROM claim, resource, users WHERE claim.resource_id = resource.resource_id AND claim.id_user = users.id_user AND etat=1";
+	public static final String QUERY_FIND_HISTORY_ALL_CLAIM = "SELECT * FROM claim, resource, users WHERE claim.resource_id = resource.resource_id AND claim.id_user = users.id_user AND submission_date=?";
+	public static final String QUERY_FIND_CLAIM_BY_ID = "SELECT * FROM claim, resource, users WHERE claim.resource_id = resource.resource_id AND claim.id_user = users.id_user AND id_claim=? AND etat=1";
+
 	
 	public static final String MSG_CREATE_CLAIM = "Claim created successfully !!" ;
-	public static final String MSG_FAILED_CLAIM_RESOURCE = "Failed to create claim !!" ;
+	public static final String MSG_FAILED_CREATE_CLAIM = "Failed to create claim !!" ;
+	public static final String MSG_UPDATE_STATUS_CLAIM = "Claim status successfully changed !!" ;
+	public static final String MSG_FAILED_UPDATE__STATUSCLAIM = "Failed to change claim status !!";
+	public static final String MSG_SELECT_VALID_STATUS = "Please select a valid status !!";
 	
+	public static final String MSG_UPDATE_CLAIM = "\n Claim successfully modified !!" ;
+	public static final String MSG_FAILED_UPDATE_CLAIM = "\n Claim modification failed !!" ;
+	public static final String MSG_CLAIM_DELETE = "Claim successfully deleted !!" ;
+	public static final String MSG_FAILED_CLAIM_DELETE = "Failed to delete claim !!" ;
+	public static final String MSG_FAILLED_FIND_CLAIM = "Claim search error !!";
 	
-	
-	
+
+	public static final String MSG_OBJET_NULL = "The object must not be null !!";
+	public static final String MSG_LIST_NULL = "The list must not be empty !!" ;
 }
 

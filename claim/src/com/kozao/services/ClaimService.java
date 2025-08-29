@@ -7,19 +7,19 @@ import com.kozao.models.enumations.StatusClaim;
 
 public interface ClaimService {
 
-	int addReclamation(Claim claim);
+	int addClaim(Claim claim);
 
-	int updateReclamation(Claim claim);
+	int updateClaim(Claim claim);
 	
-	int updateStatusReclamation(Claim claim);
+	int updateStatusClaim(Claim claim);
 
-	int deleteReclamation(int claimId);
+	int deleteClaim(int claimId);
 
-	Claim findReclamationById(int claimId);
+	Claim findClaimById(int claimId);
 
-	List<Claim> findReclamationByIdUser(int userId);
+	List<Claim> findClaimByIdUser(int userId);
 	
-	List<Claim> findAllReclamation();
+	List<Claim> findAllClaim();
 	
 	List<Claim> historyOfAllClaims(String date);
 
