@@ -3,11 +3,9 @@ package com.kozao.controllers;
 import java.util.List;
 
 import com.kozao.models.Resource;
-import com.kozao.models.User;
 import com.kozao.services.ResourceService;
 import com.kozao.services.ResourceServiceImpl;
 import com.kozao.utils.ClaimConstanteUtil;
-import com.kozao.utils.ClaimControlResourceUtil;
 import com.kozao.utils.ClaimControlUserUtil;
 
 public class ResourceController {
@@ -19,8 +17,8 @@ public class ResourceController {
 	
 	public void addResourceController(String resourceName, String resourceDescription) {
 		
-		resourceName = resourceName.trim();
-		resourceDescription = resourceDescription.trim();
+		resourceName = resourceName.trim().toLowerCase();
+		resourceDescription = resourceDescription.trim().toLowerCase();
 		
 		if (ClaimControlUserUtil.checkAllFields(resourceName, resourceDescription) ) {
 
@@ -39,10 +37,10 @@ public class ResourceController {
 	
 	public void updateResourceController(String resourceName, String resourceDescription, int resourceId) {
 		
-		resourceName = resourceName.trim();
-		resourceDescription = resourceDescription.trim();
+		resourceName = resourceName.trim().toLowerCase();
+		resourceDescription = resourceDescription.trim().toLowerCase();
 		
-		if (ClaimControlResourceUtil.controlUpdateResource(resourceName, resourceDescription, resourceId) ) {
+		if (ClaimControlUserUtil.checkAllFields(resourceName, resourceDescription) || resourceId < 1 ) {
 			msgResourceController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;	
 			return;
 		}  
@@ -61,12 +59,13 @@ public class ResourceController {
 		if (resourceId < 1) {
 			msgResourceController = ClaimConstanteUtil.MSG_VALIDE_ID;
 			return ;  
-		}
+		} 
 		
-		int r = resourceService.deleteResource(resourceId);
+		int r = resourceService.deleteResource(resourceId); 
 		
-		msgResourceController = (r > 0) ? ClaimConstanteUtil.QUERY_RESOURCE_DELETE
-			            	: ClaimConstanteUtil.QUERY_FAILED_RESOURCE_DELETE ; 
+		msgResourceController = (r > 0) ? ClaimConstanteUtil.MSG_RESOURCE_DELETE
+			            	: ClaimConstanteUtil.MSG_FAILED_RESOURCE_DELETE
+			            	; 
 	}
 
 	public Resource findResourceByIdController(int resourceId) {
@@ -86,7 +85,7 @@ public class ResourceController {
 	}
 
 	public Resource findResourceByNameController(String resourceName) {
-		resourceName = resourceName.trim();
+		resourceName = resourceName.trim().toLowerCase();
 		
 		if (ClaimControlUserUtil.checkAllFields(resourceName) ) {
 
