@@ -18,16 +18,6 @@ public class ClaimControlUserUtil {
 		return false;
 	}
 	
-	public static boolean controlUpdateUserProfil(String name, String firstName, String email, int id) {
-
-		if (name.isEmpty() || firstName.isEmpty() || email.isEmpty() || id == 0 || name == null || firstName == null
-				|| email == null) {
-
-			return true;
-		}
-
-		return false;
-	}
 
 	public static boolean emailValid(String email) {
 

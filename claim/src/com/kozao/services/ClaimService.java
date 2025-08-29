@@ -21,6 +21,6 @@ public interface ClaimService {
 	
 	List<Claim> findAllReclamation();
 	
-	
+	List<Claim> historyOfAllClaims(String date);
 
 }

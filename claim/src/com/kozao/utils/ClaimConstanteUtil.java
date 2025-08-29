@@ -21,7 +21,7 @@ public class ClaimConstanteUtil {
 	public static final String QUERY_FIND_USER_BY_ID = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status FROM users WHERE id_user=?";
 	public static final String QUERY_FIND_USER_BY_NAME = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status, password FROM users WHERE user_name=?";
 	public static final String QUERY_FIND_USER_BY_FIRST_NAME = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status FROM users WHERE user_first_name=?";
-	public static final String QUERY_FIND_ALL_USER = "SELECT id_user, user_name, user_first_name, user_email, user_role, user_status FROM users ";
+	public static final String QUERY_FIND_ALL_USER = "SELECT * FROM users, role WHERE users.user_role = role.role_id AND user_status=1";
 	public static final String QUERY_LOGIN_USER = "SELECT user_name, user_role FROM users WHERE user_email=? AND password=?" ;
 	public static final String QUERY_FIND_EMAIL = "SELECT user_name, user_role, user_status, password FROM users WHERE user_email=?" ;
 
@@ -59,8 +59,8 @@ public class ClaimConstanteUtil {
 	
 	// Resource      
 	public static final String QUERY_CREATE_RESOURCE = "INSERT INTO resource (resource_name, resource_description) VALUES (?, ?)";
-	public static final String QUERY_UPDATE_RESOURCE = "UPDATE resource SET resource_name=?, description_resource=? WHERE resource_id=?" ;
-	public static final String QUERY_DELETE_RESOURCE = "DELETE resource FROM resource_id=?" ;  
+	public static final String QUERY_UPDATE_RESOURCE = "UPDATE resource SET resource_name=?, resource_description=? WHERE resource_id=?" ;
+	public static final String QUERY_DELETE_RESOURCE = "DELETE FROM resource WHERE resource_id=?" ;  
 	public static final String QUERY_FIND_RESOURCE_BY_ID = "SELECT resource_id, resource_name, resource_description FROM resource WHERE resource_id=?";
 	public static final String QUERY_FIND_RESOURCE_BY_NAME = "SELECT resource_id, resource_name, resource_description FROM resource WHERE resource_name=?";
 	public static final String QUERY_FIND_ALL_RESOURCE = "SELECT resource_id, resource_name, resource_description FROM resource ";
@@ -70,16 +70,43 @@ public class ClaimConstanteUtil {
 	public static final String MSG_FAILED_CREATE_RESOURCE = "Failed to create resource !!" ;
 	public static final String MSG_UPDATE_RESOURCE = "\n Resource successfully modified !!" ;
 	public static final String MSG_FAILED_UPDATE_RESOURCE = "\n Resource modification failed !!" ;
-	public static final String QUERY_RESOURCE_DELETE = "Resource successfully deleted !!" ;
-	public static final String QUERY_FAILED_RESOURCE_DELETE = "Failed to delete resource !!" ;
+	public static final String MSG_RESOURCE_DELETE = "Resource successfully deleted !!" ;
+	public static final String MSG_FAILED_RESOURCE_DELETE = "Failed to delete resource !!" ;
 	public static final String MSG_FAILLED_FIND_RESOURCE = "Resource search error !!";
+	public static final String MSG_RESOURCE_NOT_NULL = "The user object must not be null !!";
 	
 	
-	
-	// Claim
-	public static final String QUERY_CREATE_CLAIM = "INSERT INTO claim (reason, submission_date, confirmation_date, priority, status_claim, id_user, resource_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	// Role   role_id	role_name	role_description
+	public static final String QUERY_CREATE_ROLE = "INSERT INTO role (role_name, role_description) VALUES (?, ?)";
+	public static final String QUERY_UPDATE_ROLE = "UPDATE role SET role_name=?, role_description=? WHERE role_id=?" ;
+	public static final String QUERY_DELETE_ROLE = "DELETE FROM role WHERE role_id=?" ;  
+	public static final String QUERY_FIND_ROLE_BY_ID = "SELECT role_id, role_name, role_description FROM role WHERE role_id=?";
+	public static final String QUERY_FIND_ROLE_BY_NAME = "SELECT role_id, role_name, role_description FROM role WHERE role_name=?";
+	public static final String QUERY_FIND_ALL_ROLE = "SELECT role_id, role_name, role_description FROM role ";
 
 	
+	public static final String MSG_CREATE_ROLE = "Role created successfully !!" ;
+	public static final String MSG_FAILED_CREATE_ROLE = "Failed to create role !!" ;
+	public static final String MSG_UPDATE_ROLE = "\n Role successfully modified !!" ;
+	public static final String MSG_FAILED_UPDATE_ROLE = "\n Role modification failed !!" ;
+	public static final String MSG_ROLE_DELETE = "Role successfully deleted !!" ;
+	public static final String MSG_FAILED_ROLE_DELETE = "Failed to delete role !!" ;
+	public static final String MSG_FAILLED_FIND_ROLE = "Role search error !!";
+	public static final String MSG_ROLE_NOT_NULL = "The role object must not be null !!";
+	
+	
+	// Claim                                           id_claim	resource_id	reason	id_user	submission_date	confirmation_date	status_claim	priority
+	public static final String QUERY_CREATE_CLAIM = "INSERT INTO claim (resource_id, reason, id_user, submission_date, confirmation_date, status_claim, priority) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	public static final String QUERY_UPDATE_CLAIM = "UPDATE claim SET resource_id=? , reason=?, priority WHERE id_claim=?";
+	public static final String QUERY_UPDATE_STATUS_CLAIM = "UPDATE claim SET status_claim=?, priority WHERE id_claim=?";
+	public static final String QUERY_DELETE_CLAIM = "DELETE FROM claim WHERE id_claim=?" ;  
+	public static final String QUERY_FIND_CLAIM_BY_ID = "SELECT * FORM claim, resource, users WHERE claim.resource_id = resource.resource_id AND claim.id_user = users.id_user AND id_claim=? AND etat=1";
+	public static final String QUERY_FIND_CLAIM_BY_ID_USER = "SELECT * FORM claim, resource, users WHERE claim.resource_id = resource.resource_id AND claim.id_user = users.id_user AND id_user=? AND etat=1";
+	public static final String QUERY_FIND_ALL_CLAIM = "SELECT * FORM claim, resource, users WHERE claim.resource_id = resource.resource_id AND claim.id_user = users.id_user AND etat=1";
+	public static final String QUERY_FIND_HISTORY_ALL_CLAIM = "SELECT * FORM claim, resource, users WHERE claim.resource_id = resource.resource_id AND claim.id_user = users.id_user";
+	
+	public static final String MSG_CREATE_CLAIM = "Claim created successfully !!" ;
+	public static final String MSG_FAILED_CLAIM_RESOURCE = "Failed to create claim !!" ;
 	
 	
 	

@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class ClaimControlClaimUtil {
 
-	public String dateAndTime() {
+	public static String dateAndTime() {
 
 		LocalDateTime myDateObj = LocalDateTime.now();
 		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy  HH:mm:ss");
