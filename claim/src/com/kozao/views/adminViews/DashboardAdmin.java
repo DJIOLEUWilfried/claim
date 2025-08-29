@@ -10,7 +10,7 @@ import com.kozao.models.User;
 public class DashboardAdmin {
 
 	public static void main(String[] args) {
-
+		  /*
 		Scanner sc = new Scanner(System.in);
 
 		int id;
@@ -19,13 +19,14 @@ public class DashboardAdmin {
 		UserController userController = new UserController();
 		User user = new User();
 
+		
 		String value;
 		char val;
 		boolean r = true;
 		
 		// if (Login.userSession == null) { Login.main(args);  return;}
         // System.out.println(String.format("\n\t\t Welcome, %s !", Login.userSession.toUpperCase()));
-
+     
 		do {
 
 			Dashboard();
@@ -98,11 +99,11 @@ public class DashboardAdmin {
 						System.out.println(UserController.msgUserController);
 					} else {
 
-						System.out.println(String.format(
-								"\n Id : %d \n Name : %s \n " + "FirstName : %s \n Email : %s"
-										+ "\n Role : %s \n Status : %s",
-								user.getIdUser(), user.getUserName(), user.getUserFirstName(), user.getUserEmail(),
-								user.getUserRole(), user.getUserStatus()));
+						//System.out.println(String.format(
+								//"\n Id : %d \n Name : %s \n " + "FirstName : %s \n Email : %s"
+									//	+ "\n Role : %s \n Status : %s",
+								//user.getIdUser(), user.getUserName(), user.getUserFirstName(), user.getUserEmail(),
+								//user.getUserRole(), user.getUserStatus()));
 					}
 					r = false;
 					break;
@@ -170,7 +171,9 @@ public class DashboardAdmin {
 		} while (r == true);
 
 	}
+	*/
 
+	}
 	public static void Dashboard() {
 		
 		System.out.println("\n ======   a- Add a user   ======");

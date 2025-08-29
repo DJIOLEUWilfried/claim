@@ -7,6 +7,7 @@ import com.kozao.models.Resource;
 import com.kozao.utils.ClaimConstanteUtil;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class ResourceTest {
 	@Test
 	public void testCreateResource() {
 
-		resourceController.addResourceController("besoin d'un clavier", "ras ras");
+		resourceController.addResourceController("besoin d'un calpin", "ras ");
 
 		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_CREATE_RESOURCE,
 				ResourceController.msgResourceController);
@@ -30,7 +31,7 @@ public class ResourceTest {
 	@Test
 	public void testUpdateResource() {
 
-		resourceController.updateResourceController("2Ressource2", "Premiere ressource modifier", 1);
+		resourceController.updateResourceController("besoin d'un ordinateur", "Premiere ressource modifier", 3);
 
 		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_UPDATE_RESOURCE,
 				ResourceController.msgResourceController);
@@ -40,7 +41,7 @@ public class ResourceTest {
 	@Test
 	public void testdeleteResource() {
 
-		resourceController.deleteResourceController(1);
+		resourceController.deleteResourceController(5);
 
 		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_RESOURCE_DELETE,
 				ResourceController.msgResourceController);
@@ -52,7 +53,7 @@ public class ResourceTest {
 
 		Resource resource = resourceController.findResourceByIdController(3);
 		
-		assertNotNull(ClaimConstanteUtil.MSG_RESOURCE_NOT_NULL, resource);
+		assertNotNull(ClaimConstanteUtil.MSG_OBJET_NULL, resource);
 	}
 		
 	
@@ -61,7 +62,7 @@ public class ResourceTest {
 
 		Resource resource = resourceController.findResourceByNameController("besoin d'un clavier");
 		
-		assertNotNull(ClaimConstanteUtil.MSG_RESOURCE_NOT_NULL, resource);
+		assertNotNull(ClaimConstanteUtil.MSG_OBJET_NULL, resource);
 	}
 	
 	
@@ -70,8 +71,7 @@ public class ResourceTest {
 
 		List<Resource> resource = resourceController.findAllUserController();
 		
-		assertNotNull(ClaimConstanteUtil.MSG_RESOURCE_NOT_NULL, resource);
-	}
+		assertFalse(ClaimConstanteUtil.MSG_LIST_NULL, resource.isEmpty());	}
 	
 	
 }

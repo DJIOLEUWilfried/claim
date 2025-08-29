@@ -1,6 +1,7 @@
 package com.kozao.tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class RoleTest {
 	@Test
 	public void testCreateRole() {
 
-		roleController.addRoleController("super admin", "ras ras");
+		roleController.addRoleController("super admin1", "ras ras1");
 
 		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_CREATE_ROLE,
 				RoleController.msgRoleController);
@@ -28,7 +29,7 @@ public class RoleTest {
 	@Test
 	public void testUpdateRole() {
 
-		roleController.updateRoleController("2Role2", "Premiere role modifier", 4);
+		roleController.updateRoleController("user", "Premiere role2 modifier", 2);
 
 		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_UPDATE_ROLE,
 				RoleController.msgRoleController);
@@ -38,7 +39,7 @@ public class RoleTest {
 	@Test
 	public void testdeleteRole() {
 
-		roleController.deleteRoleController(3);
+		roleController.deleteRoleController(6);
 
 		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_ROLE_DELETE,
 				RoleController.msgRoleController);
@@ -50,7 +51,7 @@ public class RoleTest {
 
 		Role role = roleController.findRoleByIdController(2);
 
-		assertNotNull(ClaimConstanteUtil.MSG_RESOURCE_NOT_NULL, role);
+		assertNotNull(ClaimConstanteUtil.MSG_OBJET_NULL, role);
 	}
 
    	
@@ -59,7 +60,7 @@ public class RoleTest {
 
 		Role role = roleController.findRoleByNameController("admin");
 
-		assertNotNull(ClaimConstanteUtil.MSG_RESOURCE_NOT_NULL, role);
+		assertNotNull(ClaimConstanteUtil.MSG_OBJET_NULL, role);
 	}
 
 
@@ -68,7 +69,7 @@ public class RoleTest {
 
 		List<Role> role = roleController.findAllRoleController();
 
-		assertNotNull(ClaimConstanteUtil.MSG_RESOURCE_NOT_NULL, role);
+		assertFalse(ClaimConstanteUtil.MSG_LIST_NULL, role.isEmpty());	
 	}
 	
 	

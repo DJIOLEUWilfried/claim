@@ -54,8 +54,8 @@ public class Login {
 						}
 						userSession = user.getUserFirstName();
 						
-						if (user.getUserRole().equals("user")) {  DashboardUser.main(args);  }
-						else {  DashboardAdmin.main(args);  }
+						//if (user.getUserRole().equals("user")) {  DashboardUser.main(args);  }
+						//else {  DashboardAdmin.main(args);  }
 					}
 
 					r = false;
