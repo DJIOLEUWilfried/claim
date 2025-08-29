@@ -19,21 +19,15 @@ public class UserController {
 	public static String msgUserController;
 
 	public void addUserController(String name, String firstName, String email, int role) {
-        name = name.trim();
-        firstName = firstName.trim();
+        name = name.trim().toUpperCase();
+        firstName = firstName.trim().toLowerCase();
         email = email.trim();
         
-		if (ClaimControlUserUtil.checkAllFields(name, firstName, email) || role == 0) {
+		if (ClaimControlUserUtil.checkAllFields(name, firstName, email) || role < 1) {
 
 			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;	
 			return;
 		}  
-		
-//		if ( !"user".equalsIgnoreCase(role) && !"admin".equalsIgnoreCase(role) ) { 
-//		    			
-//			msgUserController = ClaimConstanteUtil.MSG_INVALID_ROLE;
-//		    return;
-//		}
 
 		
 		if (ClaimControlUserUtil.emailValid(email) == false) {
@@ -47,8 +41,8 @@ public class UserController {
 			return;
 		}
 		
-		user.setUserName(name.toUpperCase());
-		user.setUserFirstName(firstName.toLowerCase());
+		user.setUserName(name);
+		user.setUserFirstName(firstName);
 		user.setUserEmail(email);
 
 		Role ro = new Role();
@@ -65,11 +59,11 @@ public class UserController {
 
 	public void updateUserProfilController(String name, String firstName, String email, int id) {
 
-		name = name.trim();
-        firstName = firstName.trim();
+		name = name.trim().toUpperCase();
+        firstName = firstName.trim().toLowerCase();
         email = email.trim();
         
-		if (ClaimControlUserUtil.controlUpdateUserProfil(name, firstName, email, id)) {
+		if (ClaimControlUserUtil.checkAllFields(name, firstName, email) || id < 0) {
 
 			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;
 			return;
@@ -79,8 +73,8 @@ public class UserController {
 			return;
 		}
 
-		user.setUserName(name.toUpperCase());
-		user.setUserFirstName(firstName.toLowerCase());
+		user.setUserName(name);
+		user.setUserFirstName(firstName);
 		user.setUserEmail(email);
 		user.setIdUser(id);
 
@@ -91,19 +85,19 @@ public class UserController {
 
 	}
 
-	public void updatePassWordController(String name, String oldPassword, String newPassword) {
+	public void updatePassWordController(String firstName, String oldPassword, String newPassword) {
 		
-		name = name.trim();
+		firstName = firstName.trim().toLowerCase();
 		oldPassword = oldPassword.trim();
 		newPassword = newPassword.trim();
 		
-		if (ClaimControlUserUtil.checkAllFields(name, oldPassword, newPassword)) {
+		if (ClaimControlUserUtil.checkAllFields(firstName, oldPassword, newPassword) ) {
 
 			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;
 			return;
 		}	
 		
-		User user = findUserByNameController(name.toUpperCase());
+		User user = findUserByFirstNameController(firstName);
 		if ( user == null ) {
 			msgUserController = ClaimConstanteUtil.MSG_FAILLED_FIND_USER;
 			return ;
@@ -117,7 +111,7 @@ public class UserController {
 		    return ;
 		}
 		
-		int r = userService.updatePassWord( name, ClaimControlUserUtil.cryptPassWord(newPassword) );
+		int r = userService.updatePassWord( firstName, ClaimControlUserUtil.cryptPassWord(newPassword) );
 
 		msgUserController = (r > 0) ? ClaimConstanteUtil.MSG_UPDATE_PASSWORD :ClaimConstanteUtil.MSG_FAILED_UPDATE_PASSWORD;
 
@@ -167,8 +161,6 @@ public class UserController {
 		else { 
 			
 			if ( !user.getUserStatus() ) { msgUserController = ClaimConstanteUtil.MSG_DISABLE_STATUS;  return null; }
-
-			// System.out.println("\n Pass == " + user.getPassWord());
 			
 			if ( !ClaimControlUserUtil.verifyPassword(password, user.getPassWord())) {
 				
@@ -197,13 +189,13 @@ public class UserController {
 	}
 	
 	public User findUserByNameController(String name) {
-		name = name.trim();
+		name = name.trim().toUpperCase();
 		if (ClaimControlUserUtil.checkAllFields(name)) {
 			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;
 			return null;
 		}
 		
-		User user = userService.findUserByName(name.toUpperCase());
+		User user = userService.findUserByName(name);
 		if (user == null) {
 			msgUserController = ClaimConstanteUtil.MSG_FAILLED_FIND_USER;
 			return null;
@@ -213,19 +205,19 @@ public class UserController {
 	}
 	
 	public User findUserByFirstNameController(String firstName) {
-		firstName = firstName.trim();
+		firstName = firstName.trim().toLowerCase();
 
-		if (ClaimControlUserUtil.checkAllFields(firstName.toLowerCase())) {
+		if (ClaimControlUserUtil.checkAllFields(firstName)) {
 			msgUserController = ClaimConstanteUtil.MSG_REQUIRED_FIELDS;
 			return null;
 		}
 		User user = userService.findUserByFirstName(firstName);
-
+	
 		if (user == null) {
 			msgUserController = ClaimConstanteUtil.MSG_FAILLED_FIND_USER;
 			return null;
 		}
-
+				
 		return user;
 	}
 	

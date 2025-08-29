@@ -10,7 +10,7 @@ public interface UserService {
 
 	int updateUserProfil(User user);
 
-	int updatePassWord(String name, String newPassword);
+	int updatePassWord(String firstName, String newPassword);
 
 	int disableUser(int userId);
 
@@ -19,6 +19,8 @@ public interface UserService {
 	int deleteUser(int userId);
 	
 	User login(String userEmail);
+	
+	int forgotPassword(String email);
 
 	User findUserById(int userId);
 

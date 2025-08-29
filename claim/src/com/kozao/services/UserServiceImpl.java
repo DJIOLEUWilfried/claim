@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserService {
 		return r;
 	}
 
+	
 	@Override
 	public int updateUserProfil(User user) {
 		int r = 0;
@@ -73,8 +74,9 @@ public class UserServiceImpl implements UserService {
 		return r;
 	}
 
+	
 	@Override
-	public int updatePassWord(String name, String newPassword) {
+	public int updatePassWord(String firstName, String newPassword) {
 		int r = 0;
 
 		try {
@@ -83,7 +85,7 @@ public class UserServiceImpl implements UserService {
 			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_UPDATE_PASSWORD);
 
 			pre.setString(1, newPassword);
-			pre.setString(2, name);
+			pre.setString(2, firstName);
 
 			r = pre.executeUpdate();
 
@@ -94,7 +96,7 @@ public class UserServiceImpl implements UserService {
 		return r;
 	}
 
-
+	
 	public boolean findPassWord(String oldPassword) {
 
 		try {
@@ -115,6 +117,7 @@ public class UserServiceImpl implements UserService {
 		return false;
 	}
 
+	
 	@Override
 	public int disableUser(int id) {
 		try {
@@ -139,6 +142,7 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	
 	@Override
 	public int enableUser(int id) {
 		try {
@@ -161,6 +165,7 @@ public class UserServiceImpl implements UserService {
 		return 0;
 	}
 
+	
 	@Override
 	public User login(String user_email) {
 
@@ -213,6 +218,7 @@ public class UserServiceImpl implements UserService {
 		return 0;
 	}
 
+	
 	@Override
 	public User findUserById(int id) {
 
@@ -237,7 +243,7 @@ public class UserServiceImpl implements UserService {
 				user.setUserEmail(rs.getString("user_email"));
 				user.setRoleJoin(role);
 				user.setUserStatus(rs.getBoolean("user_status"));
-
+				
 				return user;
 			}
 
@@ -249,6 +255,7 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	
 	@Override
 	public User findUserByName(String name) {
 
@@ -285,6 +292,7 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	
 	@Override
 	public User findUserByFirstName(String firstName) {
 
@@ -309,7 +317,8 @@ public class UserServiceImpl implements UserService {
 				user.setUserEmail(rs.getString("user_email"));
 				user.setRoleJoin(role);
 				user.setUserStatus(rs.getBoolean("user_status"));
-
+				user.setPassWord(rs.getString("password"));
+				
 				return user;
 			}
 
@@ -348,12 +357,9 @@ public class UserServiceImpl implements UserService {
 
 		try {
 			Connection con = ConnexionDB.getConnection();
-
 			Statement stm = con.createStatement();
 
-		    String QUERY = "SELECT * FROM users, role WHERE users.user_role = role.role_id";
-
-			ResultSet rs = stm.executeQuery(QUERY);
+			ResultSet rs = stm.executeQuery(ClaimConstanteUtil.QUERY_FIND_ALL_USER);
 
 			while (rs.next()) {
 				
@@ -379,6 +385,7 @@ public class UserServiceImpl implements UserService {
 
 		return allUser;
 	}
+
 	
 	public int forgotPassword(String email) {
 		
