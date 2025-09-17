@@ -24,7 +24,6 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public int addUser(User user) {
-		int r = 0;
 
 		if ( findEmail( user.getUserEmail() ) ) { 
 			return -1;
@@ -41,13 +40,13 @@ public class UserServiceImpl implements UserService {
 			pre.setBoolean(5, true);
 			pre.setString(6, user.getPassWord());
 
-			r = pre.executeUpdate();
+			return (pre.executeUpdate() > 0) ? 1 : 0 ;
 
 		} catch (SQLException e) {
 			logger.error(String.format("\n Error : %s", e));
 		}
 
-		return r;
+		return 0;
 	}
 
 	
@@ -71,7 +70,7 @@ public class UserServiceImpl implements UserService {
 			logger.error(String.format("\n Error : %s", e));
 		}
 
-		return r;
+		return 0;
 	}
 
 	
