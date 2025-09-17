@@ -75,7 +75,6 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public int updatePassWord(String firstName, String newPassword) {
-		int r = 0;
 
 		try {
 
@@ -85,13 +84,13 @@ public class UserServiceImpl implements UserService {
 			pre.setString(1, newPassword);
 			pre.setString(2, firstName);
 
-			r = pre.executeUpdate();
+			return (pre.executeUpdate() > 0) ? 1 : 0 ;
 
 		} catch (SQLException e) {
 			logger.error(String.format("\n . Error : %s", e.getMessage()));
 		}
 		
-		return r;
+		return 0;
 	}
 
 	
