@@ -68,7 +68,6 @@ public class ClaimServiceImpl implements ClaimService{
 
 	@Override
 	public int updateStatusClaim(Claim claim) {
-		int r = 0;
 
 		try {
 			Connection con = ConnexionDB.getConnection();
@@ -77,13 +76,13 @@ public class ClaimServiceImpl implements ClaimService{
 			pre.setString(1, claim.getStatusClaim().name());		
 			pre.setInt(2, claim.getIdClaim());
 			
-			r = pre.executeUpdate();
+			return (pre.executeUpdate() > 0) ? 1 : 0 ;
             
 		} catch (SQLException e) {
 			logger.error(String.format("\n Error : %s", e));
 		}
 
-		return r;
+		return 0;
 	}
 
 	@Override
