@@ -63,8 +63,7 @@ public class RoleController {
 		int r = roleService.deleteRole(roleId);  
 		
 		msgRoleController = (r > 0) ? ClaimConstanteUtil.MSG_ROLE_DELETE
-			            	: ClaimConstanteUtil.MSG_FAILED_ROLE_DELETE
-			            	; 
+			            	: ClaimConstanteUtil.MSG_FAILED_ROLE_DELETE ; 
 	}
 
 	public Role findRoleByIdController(int roleId) {
@@ -103,9 +102,8 @@ public class RoleController {
 	}
 
 	public List<Role> findAllRoleController(){
-		 List <Role> allRole = roleService.findAllRole();
 		 
-		 return allRole ;
+		 return roleService.findAllRole();
 	}
 
 
