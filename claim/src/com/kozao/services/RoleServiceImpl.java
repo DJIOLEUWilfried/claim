@@ -69,9 +69,7 @@ public class RoleServiceImpl implements RoleService {
 			PreparedStatement pre = con.prepareStatement(ClaimConstanteUtil.QUERY_DELETE_ROLE);
 			pre.setInt(1, roleId);
 
-			roleId = pre.executeUpdate();
-
-			return roleId;
+			return (pre.executeUpdate() > 0) ? 1 : 0 ;
 
 		} catch (SQLException e) {
 
