@@ -21,7 +21,6 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public int addResource(Resource res) {
-		int r = 0;
 
 		try {
 
@@ -31,13 +30,13 @@ public class ResourceServiceImpl implements ResourceService {
 			pre.setString(1, res.getResourceName());
 			pre.setString(2, res.getResourceDescription());
 
-			r = pre.executeUpdate();
+			return (pre.executeUpdate() > 0) ? 1 : 0 ;
 
 		} catch (SQLException e) {
 			logger.error(String.format("\n Error : %s", e));
 		}
 
-		return r;
+		return 0;
 	}
 
 	@Override
