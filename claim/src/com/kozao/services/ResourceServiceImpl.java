@@ -41,7 +41,6 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public int updateResource(Resource res) {
-		int r = 0;
 		try {
 
 			Connection con = ConnexionDB.getConnection();
@@ -51,13 +50,13 @@ public class ResourceServiceImpl implements ResourceService {
 			pre.setString(2, res.getResourceDescription());
 			pre.setInt(3, res.getIdResource());
 
-			r = pre.executeUpdate();
+			return (pre.executeUpdate() > 0) ? 1 : 0 ;
 
 		} catch (SQLException e) {
 			logger.error(String.format("\n Error : %s", e));
 		}
 
-		return r;
+		return 0;
 	}
 
 	@Override
