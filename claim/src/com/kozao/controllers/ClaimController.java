@@ -123,21 +123,18 @@ public class ClaimController {
 	}
 
 	public List<Claim> findClaimByIdUser(int userId){
-		 List <Claim> allClaim = claimService.findClaimByIdUser(userId);
 		 
-		 return allClaim ;
+		 return claimService.findClaimByIdUser(userId);
 	}
 	
 	public List<Claim> findAllClaim(){
-		 List <Claim> allClaim = claimService.findAllClaim();
 		 
-		 return allClaim ;
+		 return claimService.findAllClaim();
 	}
 
 	public List<Claim> historyOfAllClaims(String date){
-		 List <Claim> allClaim = claimService.historyOfAllClaims(date);
 		 
-		 return allClaim ;
+		 return claimService.historyOfAllClaims(date);
 	}
 
 
