@@ -52,7 +52,6 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public int updateUserProfil(User user) {
-		int r = 0;
 		try {
 
 			Connection con = ConnexionDB.getConnection();
@@ -63,8 +62,8 @@ public class UserServiceImpl implements UserService {
 			pre.setString(3, user.getUserEmail());
 			pre.setInt(4, user.getIdUser());
 
-			r = pre.executeUpdate();
-
+			return (pre.executeUpdate() > 0) ? 1 : 0 ;
+			
 		} catch (SQLException e) {
 
 			logger.error(String.format("\n Error : %s", e));
