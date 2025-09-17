@@ -222,9 +222,8 @@ public class UserController {
 	}
 	
 	public List<User> findAllUserController(){
-		 List <User> allUser = userService.findAllUser();
 		 
-		 return allUser ;
+		 return userService.findAllUser();
 	}
 	
 	public void deleteUserController(int id) {
