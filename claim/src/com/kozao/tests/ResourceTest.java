@@ -69,7 +69,7 @@ public class ResourceTest {
 	@Test
 	public void testfindAllResources() { 
 
-		List<Resource> resource = resourceController.findAllUserController();
+		List<Resource> resource = resourceController.findAllResourceController();
 		
 		assertFalse(ClaimConstanteUtil.MSG_LIST_NULL, resource.isEmpty());	}
 	

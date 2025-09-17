@@ -386,9 +386,6 @@ public class UserServiceImpl implements UserService {
 	
 	public int forgotPassword(String email) {
 		
-		
-		
-		
 		return 0;
 	}
 	

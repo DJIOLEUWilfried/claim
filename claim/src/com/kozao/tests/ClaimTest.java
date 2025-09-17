@@ -86,7 +86,7 @@ public class ClaimTest {
 	@Test
 	public void testHistoryOfAllClaims() {
 
-		List<Claim> claim = claimController.historyOfAllClaims("28-08-202");
+		List<Claim> claim = claimController.historyOfAllClaims("28-08-2025");
 		
 		System.out.println("Recla == " + claim);
 

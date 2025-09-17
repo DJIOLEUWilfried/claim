@@ -16,14 +16,14 @@ public class UserTest {
 	public UserController userController = new UserController();
 	
  
-//	@Test
-//	public void testCreateUser() {
-//
-//		userController.addUserController("Tchoffo", "cyrias", "Tchoffo@gmail.com", 2);
-//
-//		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_CREATE_USER,
-//				UserController.msgUserController);
-//	}
+	@Test
+	public void testCreateUser() {
+
+		userController.addUserController("AJBB", "nj", "Tchhjoffo@gmail.com", 2);
+
+		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_CREATE_USER,
+				UserController.msgUserController);
+	}
 	
 	
 	@Test
@@ -36,16 +36,16 @@ public class UserTest {
 	}	
 	
 	
-//	@Test  
-//	public void testUpdatePassWord() {
-//
-//		userController.updatePassWordController("wilfried1", "ras1", "ras2");
-//		
-//		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_UPDATE_PASSWORD,
-//				UserController.msgUserController);
-//	}
+	@Test  
+	public void testUpdatePassWord() {
+
+		userController.updatePassWordController("wilfried1", "ras1", "ras2");
+		
+		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.MSG_UPDATE_PASSWORD,
+				UserController.msgUserController);
+	}
 	
-	/*
+	
 	
 	@Test  
 	public void testDisableUser() {
@@ -56,7 +56,7 @@ public class UserTest {
 				UserController.msgUserController);
 	}
 		
-	
+
 	@Test  
 	public void testEnableUser() {
 
@@ -66,49 +66,49 @@ public class UserTest {
 				UserController.msgUserController);
 	}	
 		
-	*/	
-	
-//	@Test  
-//	public void testFindUserById() { 
-//
-//		User user = userController.findUserByIdController(2);
-//		
-//		assertNotNull(ClaimConstanteUtil.MSG_OBJET_NULL, user);
-//	}
 	
 	
-//	@Test  
-//	public void testFindUserByName() { 
-//
-//		User user = userController.findUserByNameController("KAMGA");
-//		
-//		assertNotNull(ClaimConstanteUtil.MSG_OBJET_NULL, user);
-//	}
+	@Test  
+	public void testFindUserById() { 
+
+		User user = userController.findUserByIdController(2);
+		
+		assertNotNull(ClaimConstanteUtil.MSG_OBJET_NULL, user);
+	}
+	
+	
+	@Test  
+	public void testFindUserByName() { 
+
+		User user = userController.findUserByNameController("KAMGA");
+		
+		assertNotNull(ClaimConstanteUtil.MSG_OBJET_NULL, user);
+	}
 		
 	
-//	@Test  
-//	public void testfindUserByFirstName() { 
-//
-//		User user = userController.findUserByFirstNameController("souleman");
-//		
-//		assertNotNull(ClaimConstanteUtil.MSG_OBJET_NULL, user);
-//	}
+	@Test  
+	public void testfindUserByFirstName() { 
+
+		User user = userController.findUserByFirstNameController("souleman");
+		
+		assertNotNull(ClaimConstanteUtil.MSG_OBJET_NULL, user);
+	}
 	
 	
-//	@Test  
-//	public void testFindAllUser() { 
-//
-//		List<User> user = userController.findAllUserController();
-//		
-//		assertFalse(ClaimConstanteUtil.MSG_LIST_NULL, user.isEmpty());	
-//	}
+	@Test  
+	public void testFindAllUser() { 
+
+		List<User> user = userController.findAllUserController();
+		
+		assertFalse(ClaimConstanteUtil.MSG_LIST_NULL, user.isEmpty());	
+	}
     
-	/*
+	
 	
 	@Test  
 	public void testDeleteUser() {
 
-		userController.deleteUserController(4);
+		userController.deleteUserController(5);
 		
 		assertEquals(ClaimConstanteUtil.MSG_TEST_FAILED, ClaimConstanteUtil.QUERY_USER_DELETE,
 				UserController.msgUserController);
@@ -123,6 +123,6 @@ public class UserTest {
 		assertNotNull(ClaimConstanteUtil.MSG_OBJET_NULL, user);
 	}
 	 
-	*/
+	
 	
 }
