@@ -103,10 +103,9 @@ public class ResourceController {
 		return resource; 
 	}
 
-	public List<Resource> findAllUserController(){
-		 List <Resource> allResource = resourceService.findAllResources();
+	public List<Resource> findAllResourceController(){
 		 
-		 return allResource ;
+		 return resourceService.findAllResources();
 	}
 
 	
