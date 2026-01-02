@@ -14,7 +14,7 @@ import javax.mail.internet.MimeMessage;
 
 import com.kozao.services.UserServiceImpl;
 
-public class ClaimSendPasswordUtil {
+public class ClaimSendPasswordUtil { 
 	
 	public static Logger logger = Logger.getLogger(UserServiceImpl.class.getName());
 
@@ -29,7 +29,7 @@ public class ClaimSendPasswordUtil {
 
 
 		final String expediteurEmail = "djioleuwilfried@gmail.com";
-        final String motDePasseApp = "phuw pmkm cbui cpjs"; // Mot de passe d'application Gmail
+        final String motDePasseApp = "phuw cbui cpjs"; // Mot de passe d'application Gmail
 
         String destinataire = email;  
         String sujet = "Mot de passe de votre compte chez CLAIM";
